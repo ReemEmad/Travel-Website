@@ -72,6 +72,7 @@ export default function Navbar() {
         selectedKeys={[current]}
         mode="horizontal"
         style={{
+          // paddingLeft: "17%",
           marginLeft: "35.5%",
           height: "100px",
           display: "flex",
