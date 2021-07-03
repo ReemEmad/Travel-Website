@@ -1,11 +1,12 @@
 import React from "react"
-import { Divider, Layout, Tabs, Card, Button, Collapse } from "antd"
+import { Divider, Layout, Tabs, Card, Button, Collapse, Rate } from "antd"
 import {
   ClockCircleOutlined,
   FlagOutlined,
   CalendarOutlined,
   BankOutlined,
   DollarOutlined,
+  CheckCircleOutlined,
 } from "@ant-design/icons"
 import imgSrc from "../banner.png.webp"
 import imgSrc1 from "../nile.jpg"
@@ -22,7 +23,11 @@ export default function Tour() {
     console.log(key)
   }
   const Demo = () => (
-    <Tabs defaultActiveKey="1" onChange={callback}>
+    <Tabs
+      defaultActiveKey="1"
+      tabBarStyle={{ fontWeight: "bold" }}
+      size="large"
+    >
       <TabPane tab="Overview" key="1">
         <p>
           Overview Itinerary Prices Client Reviews Overview Visit the land of
@@ -35,7 +40,12 @@ export default function Tour() {
           the way, such as Karnak Temple, Valley of Kings, Temple of Queen
           Hatshepsut, and Temple of Philae.
         </p>
-        <Card title="Included" hoverable style={{ width: 300 }}>
+        <Card
+          title={"Included"}
+          // title={<CheckCircleOutlined />}
+          hoverable
+          style={{ width: 300 }}
+        >
           <p>Meet and greet service by our representatives at airports </p>
           <p>Assistance of our guest relations during your stay</p>
           <p>Entry Visa for Egypt provide upon arrival at Cairo Airport</p>
@@ -48,7 +58,11 @@ export default function Tour() {
         <br></br>
       </TabPane>
       <TabPane tab="Itinerary" key="2">
-        <Collapse defaultActiveKey={["1"]} onChange={callback2}>
+        <Collapse
+          defaultActiveKey={["1"]}
+          onChange={callback2}
+          bordered={false}
+        >
           <Panel
             header="Day 1: Arrival Cairo - Welcome to land of the Pharaoh’s"
             key="1"
@@ -63,7 +77,11 @@ export default function Tour() {
               tour. Overnight in Cairo.
             </p>
           </Panel>
-          <Panel header="Day 2: Pyramids and Cairo Sightseeing" key="2">
+          <Panel
+            header="Day 2: Pyramids and Cairo Sightseeing"
+            // style={{ fontWeight: "bold" }}
+            key="2"
+          >
             <p>
               Breakfast at your hotel at Cairo at First Residence and then met
               by your personal guide who will accompany you to Giza Plateau to
@@ -106,19 +124,45 @@ export default function Tour() {
             paddingBottom: "30px",
           }}
         >
-          <BankOutlined style={{ fontSize: "30px" }} />
-          <Divider type="vertical" orientation="right" />
-          <div>
+          <BankOutlined style={{ fontSize: "30px", alignSelf: "center" }} />
+          <div align="left">
             <img src={imgSrc1} />
-            <p>Le Riad Hotel de Cairo</p>
+            <p
+              style={{
+                fontSize: "16px",
+                fontWeight: "600",
+                marginBottom: "0px",
+              }}
+            >
+              Le Riad Hotel de Cairo
+            </p>
+            <Rate value="4" />
           </div>
-          <div>
+          <div align="left">
             <img src={imgSrc1} />
-            <p>Mayfair Nile Cruise</p>
+            <p
+              style={{
+                fontSize: "16px",
+                fontWeight: "600",
+                marginBottom: "0px",
+              }}
+            >
+              Mayfair Nile Cruise
+            </p>
+            <Rate value="4" />
           </div>
-          <div>
+          <div align="left">
             <img src={imgSrc1} />
-            <p>Sonesta St George Nile Cruise</p>
+            <p
+              style={{
+                fontSize: "16px",
+                fontWeight: "600",
+                marginBottom: "0px",
+              }}
+            >
+              Sonesta St George Nile Cruise
+            </p>
+            <Rate value="5" />
           </div>
         </div>
         <div
@@ -126,26 +170,63 @@ export default function Tour() {
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
+            marginTop: "40px",
           }}
         >
           <DollarOutlined style={{ fontSize: "30px" }} />
-          <Divider type="vertical" orientation="right" />
           <div>
             <h3>MAY-SEPT</h3>
-            <p>US$ 1955 Per Person in Triple Room</p>
-            <p>US$ 2015 Per Person in Double Room</p>
-            <p>US$ 3045 One Person Traveling Alone</p>
+            <span style={{ color: "#FF4A52" }}>US$ 1955 </span>
+            <span>Per Person in Triple Room</span>
+            <br></br>
+            <span style={{ color: "#FF4A52" }}>US$ 2015 </span>
+            <span> Per Person in Double Room</span>
+            <br></br>
+            <span style={{ color: "#FF4A52" }}>US$ 3045 </span>
+            <span>One Person Traveling Alone</span>
           </div>
           <div>
             <h3>OCT-APRIL</h3>
-            <p>US$ 2275 Per Person in Triple Room</p>
-            <p>US$ 2335 Per Person in Double Room</p>
-            <p>US$ 3485 One Person Traveling Alone</p>
+            <span style={{ color: "#FF4A52" }}>US$ 2275 </span>
+            <span> Per Person in Triple Room</span>
+            <br></br>
+            <span style={{ color: "#FF4A52" }}>US$ 2335</span>
+            <span> Per Person in Double Room</span>
+            <br></br>
+            <span style={{ color: "#FF4A52" }}>US$ 3485</span>
+            <span> One Person Traveling Alone</span>
           </div>
         </div>
       </TabPane>
       <TabPane tab="Client Reviews" key="4">
-        Content of Tab Pane 3
+        <div className="site-card-border-less-wrapper">
+          <Card
+            title="Cairo Tours & Packages"
+            bordered={true}
+            style={{ width: 400 }}
+          >
+            <Rate value="4" />
+            {"         "}
+            <span align="right">
+              {"             "}
+              9.245 reviews
+            </span>
+            <h2>Recent traveler reviews</h2>
+            <p>
+              “Our experience with Memphis Tours was amazing! We were met by
+              Mohamed F., a very organized...”
+            </p>
+            <p>
+              “I have engoyed with tourirst guide "shahinaz", she makes see the
+              beatuy of cairo and its...”
+            </p>
+            <p>
+              “It was so amazing to see their pyramids lifelong dream our tour
+              guides were definitely vocals...”
+            </p>
+            <Button align="right">Read more</Button>
+          </Card>
+        </div>
       </TabPane>
     </Tabs>
   )
@@ -158,9 +239,13 @@ export default function Tour() {
       </div>
       {/* </Header>
         <Content> */}
-      <div style={{ padding: "70px 70px 40px 100px" }}>
+      <div style={{ padding: "50px 70px 40px 100px" }}>
         <h1>Cairo and Nile Adventure</h1>
-        <h3>from US$3299</h3>
+        <h2
+          style={{ fontSize: "30px", paddingBottom: "30px", color: "#1EC6B6" }}
+        >
+          from US$3299
+        </h2>
         <div
           style={{
             display: "flex",
@@ -170,20 +255,24 @@ export default function Tour() {
           }}
         >
           <div>
-            <ClockCircleOutlined style={{ fontSize: "30px" }} />
-            <p>Duration</p>
+            <ClockCircleOutlined
+              style={{ fontSize: "30px", paddingBottom: "10px" }}
+            />
+            <p style={{ fontSize: "17px", fontWeight: "bold" }}>Duration</p>
             <p>11 Days</p>
           </div>
           <Divider type="vertical" orientation="right" />
           <div>
-            <FlagOutlined style={{ fontSize: "30px" }} />
-            <p>Type</p>
+            <FlagOutlined style={{ fontSize: "30px", paddingBottom: "10px" }} />
+            <p style={{ fontSize: "17px", fontWeight: "bold" }}>Type</p>
             <p>Private tour</p>
           </div>
           <Divider type="vertical" orientation="right" />
           <div>
-            <CalendarOutlined style={{ fontSize: "30px" }} />
-            <p>Run</p>
+            <CalendarOutlined
+              style={{ fontSize: "30px", paddingBottom: "10px" }}
+            />
+            <p style={{ fontSize: "17px", fontWeight: "bold" }}>Run</p>
             <p>Friday, Saturday, Sunday</p>
           </div>
         </div>

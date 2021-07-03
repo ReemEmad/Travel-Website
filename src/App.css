@@ -125,3 +125,44 @@ h3 {
 .ant-tabs {
   margin-left: 100px;
 }
+
+.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: #ff4a52;
+}
+
+.ant-tabs-tab-btn:focus,
+.ant-tabs-tab-remove:focus,
+.ant-tabs-tab-btn:active,
+.ant-tabs-tab-remove:active {
+  color: #ff4a52;
+}
+
+.ant-tabs-tab:hover {
+  color: #ff4a52;
+}
+
+.ant-tabs-ink-bar {
+  background: #ff4a52;
+}
+
+.site-card-border-less-wrapper {
+  padding: 30px;
+  background: #ececec;
+}
+
+.ant-btn-primary {
+  background: #1ec6b6;
+  border-color: #1ec6b6;
+}
+
+.ant-btn-primary:hover,
+.ant-btn-primary:focus {
+  background: #0f6b62;
+  border-color: #0f6b62;
+}
+
+.ant-btn:hover,
+.ant-btn:focus {
+  color: #1ec6b6;
+  border-color: #1ec6b6;
+}
