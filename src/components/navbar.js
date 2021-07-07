@@ -47,7 +47,9 @@ export default function Navbar() {
           {" "}
           <Link to="/">Home</Link>
         </Menu.Item>
-        <Menu.Item key="about">About</Menu.Item>
+        <Menu.Item key="about">
+          <Link to="/categories">Categories</Link>
+        </Menu.Item>
         <Menu.Item key="dest">
           <Link to="/tour">Destination</Link>
         </Menu.Item>
@@ -57,7 +59,9 @@ export default function Navbar() {
           <Menu.Item key="setting:2">Items</Menu.Item>
         </SubMenu>
 
-        <Menu.Item key="contact">Contact</Menu.Item>
+        <Menu.Item key="Tours">
+          <Link to="/tours">Tours</Link>
+        </Menu.Item>
 
         <SubMenu key="SubMenu1" title="Blog">
           <Menu.Item key="setting:3">
@@ -72,7 +76,7 @@ export default function Navbar() {
         selectedKeys={[current]}
         mode="horizontal"
         style={{
-          // paddingLeft: "17%",
+          paddingLeft: "2%",
           marginLeft: "35.5%",
           height: "100px",
           display: "flex",
@@ -99,6 +103,7 @@ export default function Navbar() {
         <Menu.Item
           style={{
             background: "red",
+
             // lineHeight: "70px",
             // alignItems: "flex-end",
           }}

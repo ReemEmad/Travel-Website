@@ -4,6 +4,8 @@ import Home from "./home"
 import Tour from "./components/tour"
 import Navbar from "./components/navbar"
 import Blog from "./components/blog"
+import AllTours from "./components/allTours"
+import Categories from "./components/categories"
 
 function App() {
   return (
@@ -16,6 +18,13 @@ function App() {
         <Route path="/blog">
           <Navbar />
           <Blog />
+        </Route>
+        <Route path="/tours">
+          <AllTours />
+        </Route>
+        <Route path="/categories">
+          {/* <Navbar /> */}
+          <Categories />
         </Route>
         <Route path="/">
           <Home />

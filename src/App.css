@@ -166,3 +166,7 @@ h3 {
   color: #1ec6b6;
   border-color: #1ec6b6;
 }
+
+.ant-row-middle {
+  align-items: flex-start;
+}

@@ -167,8 +167,8 @@ export default function Home() {
       <div className="places">
         <h1>Popular Places</h1>
         <div className="places_grid">
-          <Row gutter={30}>
-            <Col className="gutter-row" span={7}>
+          <Row gutter={30} style={{ marginLeft: "30px" }}>
+            <Col className="gutter-row" span={8}>
               <div style={style}>
                 {" "}
                 <Card
@@ -183,7 +183,7 @@ export default function Home() {
                 </Card>
               </div>
             </Col>
-            <Col className="gutter-row" span={7}>
+            <Col className="gutter-row" span={8}>
               <div style={style}>
                 {" "}
                 <Card
@@ -198,7 +198,7 @@ export default function Home() {
                 </Card>
               </div>
             </Col>
-            <Col className="gutter-row" span={7}>
+            <Col className="gutter-row" span={8}>
               <div style={style}>
                 <Card
                   hoverable
@@ -213,8 +213,8 @@ export default function Home() {
               </div>
             </Col>
           </Row>
-          <Row gutter={30}>
-            <Col className="gutter-row" span={7}>
+          <Row gutter={30} style={{ marginLeft: "30px" }}>
+            <Col className="gutter-row" span={8}>
               <div style={style}>
                 {" "}
                 <Card
@@ -229,7 +229,7 @@ export default function Home() {
                 </Card>
               </div>
             </Col>
-            <Col className="gutter-row" span={7}>
+            <Col className="gutter-row" span={8}>
               <div style={style}>
                 {" "}
                 <Card
@@ -244,7 +244,7 @@ export default function Home() {
                 </Card>
               </div>
             </Col>
-            <Col className="gutter-row" span={7}>
+            <Col className="gutter-row" span={8}>
               <div style={style}>
                 <Card
                   hoverable
