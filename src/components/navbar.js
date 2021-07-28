@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { PageHeader, Menu, Input } from "antd"
+import { PageHeader, Menu, Input, Modal } from "antd"
 import {
   MailOutlined,
   AppstoreOutlined,
@@ -16,10 +16,23 @@ import { Link } from "react-router-dom"
 const { SubMenu } = Menu
 export default function Navbar() {
   const [current, setcurrent] = useState("mail")
+  const [isModalVisible, setIsModalVisible] = useState(false)
 
   let handleClick = (e) => {
     console.log("click ", e)
     setcurrent(e.key)
+  }
+
+  const showModal = () => {
+    setIsModalVisible(true)
+  }
+
+  const handleOk = () => {
+    setIsModalVisible(false)
+  }
+
+  const handleCancel = () => {
+    setIsModalVisible(false)
   }
 
   return (
@@ -37,10 +50,12 @@ export default function Navbar() {
           "2px 4px 5px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
       }}
     >
-      <PageHeader
-        className="site-page-header"
-        title={<img src="navbar.webp" />}
-      />
+      <Link to="/">
+        <PageHeader
+          className="site-page-header"
+          title={<img src="navbar.webp" />}
+        />
+      </Link>
 
       <Menu onClick={handleClick} selectedKeys={[current]} mode="horizontal">
         <Menu.Item key="home">
@@ -101,6 +116,7 @@ export default function Navbar() {
           <GooglePlusOutlined />
         </Menu.Item>
         <Menu.Item
+          onClick={showModal}
           style={{
             background: "red",
 
@@ -111,6 +127,15 @@ export default function Navbar() {
           <SearchOutlined style={{ color: "#ffffff", fontWeight: "900" }} />
         </Menu.Item>
       </Menu>
+
+      <Modal
+        title="Search"
+        visible={isModalVisible}
+        onOk={handleOk}
+        onCancel={handleCancel}
+      >
+        <Input placeholder="What do you wanna look for?" />
+      </Modal>
     </div>
   )
 }

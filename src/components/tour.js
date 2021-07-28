@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { Divider, Layout, Tabs, Card, Button, Collapse, Rate } from "antd"
 import {
   ClockCircleOutlined,
@@ -10,8 +10,9 @@ import {
 } from "@ant-design/icons"
 import imgSrc from "../banner.png.webp"
 import imgSrc1 from "../nile.jpg"
+import { getSingleTour } from "../Apis/toursApis"
 
-export default function Tour() {
+export default function Tour(props) {
   const { Header, Footer, Sider, Content } = Layout
   const { TabPane } = Tabs
   const { Panel } = Collapse
@@ -22,6 +23,16 @@ export default function Tour() {
   function callback2(key) {
     console.log(key)
   }
+
+  let getData = async () => {
+    let result = await getSingleTour(props.match.params.id)
+    console.log(result)
+  }
+
+  useEffect(() => {
+    getData()
+  }, [])
+
   const Demo = () => (
     <Tabs
       defaultActiveKey="1"

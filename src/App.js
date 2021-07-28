@@ -11,9 +11,15 @@ function App() {
   return (
     <div className="App">
       <Switch>
-        <Route path="/tour">
-          <Navbar />
-          <Tour />
+        <Route path="/tour/:id">
+          {(routeProps) => {
+            return (
+              <>
+                <Navbar />
+                <Tour {...routeProps} />
+              </>
+            )
+          }}
         </Route>
         <Route path="/blog">
           <Navbar />

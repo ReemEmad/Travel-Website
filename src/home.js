@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import Navbar from "./components/navbar"
 import {
   Carousel,
@@ -13,14 +13,37 @@ import {
   Divider,
   Card,
 } from "antd"
-
+import { Link } from "react-router-dom"
 import {
   DownOutlined,
   ArrowRightOutlined,
   ArrowLeftOutlined,
+  ClockCircleOutlined,
 } from "@ant-design/icons"
 
+import { toursApi, searchApi, categoriesApi } from "./Apis/homeApis"
+
 export default function Home() {
+  const [tours, setTours] = useState([])
+  const [categories, setCategories] = useState([])
+  const [date, setDate] = useState("")
+
+  let getTours = async () => {
+    let { data } = await toursApi()
+    setTours(data)
+    console.log(data)
+  }
+  let getCategories = async () => {
+    let { data } = await categoriesApi()
+    setCategories(data)
+    console.log("categories", data)
+  }
+
+  useEffect(() => {
+    getTours()
+    getCategories()
+  }, [])
+
   const { Meta } = Card
   const contentStyle = {
     height: "700px",
@@ -38,8 +61,18 @@ export default function Home() {
   }
   const style = { padding: "8px 0" }
 
-  function onChange(date, dateString) {
-    console.log(date, dateString)
+  function onChange(dateString) {
+    setDate(dateString)
+    console.log(dateString)
+  }
+
+  let searchFn = () => {
+    let data = new FormData()
+    data.append("key", "alexandria")
+    data.append("value", date)
+
+    let result = searchApi(data)
+    console.log(result)
   }
 
   const menu = (
@@ -64,74 +97,85 @@ export default function Home() {
       </Menu.Item>
     </Menu>
   )
+
   return (
     <div>
       <Navbar />
       <div className="carousel">
         <Carousel autoplay>
-          <div className="container">
-            <p className="centered">Indonesia</p>
-            <Button size="large" className="centeredBtn" type="primary">
-              Explore Now
-            </Button>
-            <img style={contentStyle} src="banner.png.webp" />
-          </div>
-          <div className="container">
-            <p className="centered">Australia</p>
-            <Button size="large" className="centeredBtn" type="primary">
-              Explore Now
-            </Button>
-            <img style={contentStyle} src="banner2.png.webp" />
-          </div>
-          <div className="container">
-            <p className="centered">Switzerland</p>
-            <Button size="large" className="centeredBtn" type="primary">
-              Explore Now
-            </Button>
-            <img style={contentStyle} src="banner3.png.webp" />
-          </div>
+          {/* {//categories} */}
+          {categories.map((item) => (
+            <div className="container">
+              <p className="centered">{item.name}</p>
+              <Button size="large" className="centeredBtn" type="primary">
+                Explore Now
+              </Button>
+              <img
+                // style={contentStyle}
+                src={item.images[0].path.replace(
+                  "127.0.0.1:8000",
+                  "ec2-18-188-18-65.us-east-2.compute.amazonaws.com/TravelsAgency/public",
+                )}
+                alt=""
+                // width="300"
+                // height="400"
+              />
+            </div>
+          ))}
         </Carousel>
       </div>
 
-      <div className="search">
+      {/* <div className="search">
         <p style={{ marginTop: "10px" }}>Where you want to go?</p>
         <Input placeholder="Where to go?" />
         <Space direction="vertical">
           <DatePicker onChange={onChange} />
         </Space>
+     
         <Dropdown overlay={menu}>
           <a className="ant-dropdown-link" onClick={(e) => e.preventDefault()}>
             Travel Type {"   "} <DownOutlined />
           </a>
         </Dropdown>
-
-        <Button size="middle" type="primary">
+        <Button size="middle" type="primary" onClick={searchFn}>
           Search
         </Button>
-      </div>
+      </div> */}
 
       <div className="destinations">
-        <h1>Popular Destinations</h1>
+        <h1>Popular Cities</h1>
         <div className="grid">
           <Row gutter={16}>
-            <Col className="gutter-row" span={8}>
-              <div style={style}>
-                <img src="travel.webp"></img>
-              </div>
-            </Col>
-            <Col className="gutter-row" span={8}>
-              <div style={style}>
-                {" "}
-                <img src="travel2.webp"></img>
-              </div>
-            </Col>
-            <Col className="gutter-row" span={8}>
-              <div style={style}>
-                <img src="travel3.webp"></img>
-              </div>
-            </Col>
+            {categories.map((item) => (
+              <Col className="gutter-row" span={8}>
+                <div style={style}>
+                  <img
+                    alt=""
+                    color="#4C4C4C"
+                    width="350px"
+                    height="200px"
+                    src={item.images[0].path.replace(
+                      "127.0.0.1:8000",
+                      "ec2-18-188-18-65.us-east-2.compute.amazonaws.com/TravelsAgency/public",
+                    )}
+                  />
+                  <div
+                    style={{
+                      color: "#F2F2F2",
+                      fontWeight: "bold",
+                      position: "absolute",
+                      top: "150px",
+                      left: "105px",
+                      background: "#FF4A52",
+                    }}
+                  >
+                    {item.name}
+                  </div>
+                </div>
+              </Col>
+            ))}
           </Row>
-          <Row gutter={16}>
+          {/* <Row gutter={16}>
             <Col className="gutter-row" span={8}>
               <div style={style}>
                 {" "}
@@ -149,7 +193,7 @@ export default function Home() {
                 <img src="travel6.webp"></img>
               </div>
             </Col>
-          </Row>
+          </Row> */}
         </div>
       </div>
 
@@ -165,99 +209,63 @@ export default function Home() {
       </div>
 
       <div className="places">
-        <h1>Popular Places</h1>
+        <h1>Popular Tours</h1>
         <div className="places_grid">
           <Row gutter={30} style={{ marginLeft: "30px" }}>
-            <Col className="gutter-row" span={8}>
-              <div style={style}>
-                {" "}
-                <Card
-                  hoverable
-                  style={{ width: 350 }}
-                  cover={<img src="x1.webp"></img>}
-                >
-                  <Meta
-                    title="Europe Street beat"
-                    description="www.instagram.com"
-                  />
-                </Card>
-              </div>
-            </Col>
-            <Col className="gutter-row" span={8}>
-              <div style={style}>
-                {" "}
-                <Card
-                  hoverable
-                  style={{ width: 350 }}
-                  cover={<img src="x2.webp"></img>}
-                >
-                  <Meta
-                    title="Europe Street beat"
-                    description="www.instagram.com"
-                  />
-                </Card>
-              </div>
-            </Col>
-            <Col className="gutter-row" span={8}>
-              <div style={style}>
-                <Card
-                  hoverable
-                  style={{ width: 350 }}
-                  cover={<img src="x3.webp"></img>}
-                >
-                  <Meta
-                    title="Europe Street beat"
-                    description="www.instagram.com"
-                  />
-                </Card>
-              </div>
-            </Col>
-          </Row>
-          <Row gutter={30} style={{ marginLeft: "30px" }}>
-            <Col className="gutter-row" span={8}>
-              <div style={style}>
-                {" "}
-                <Card
-                  hoverable
-                  style={{ width: 350 }}
-                  cover={<img src="x4.webp"></img>}
-                >
-                  <Meta
-                    title="Europe Street beat"
-                    description="www.instagram.com"
-                  />
-                </Card>
-              </div>
-            </Col>
-            <Col className="gutter-row" span={8}>
-              <div style={style}>
-                {" "}
-                <Card
-                  hoverable
-                  style={{ width: 350 }}
-                  cover={<img src="x5.webp"></img>}
-                >
-                  <Meta
-                    title="Europe Street beat"
-                    description="www.instagram.com"
-                  />
-                </Card>
-              </div>
-            </Col>
-            <Col className="gutter-row" span={8}>
-              <div style={style}>
-                <Card
-                  hoverable
-                  style={{ width: 350 }}
-                  cover={<img src="x6.webp"></img>}
-                >
-                  <Meta
-                    title="Europe Street beat"
-                    description="www.instagram.com"
-                  />
-                </Card>
-              </div>
-            </Col>
+            {tours.map((tour) => (
+              <Col className="gutter-row" span={8}>
+                <div style={style}>
+                  {" "}
+                  <Card
+                    hoverable
+                    style={{ width: 350 }}
+                    cover={
+                      <>
+                        <img
+                          src={tour.images[0].path.replace(
+                            "127.0.0.1:8000",
+                            "ec2-18-188-18-65.us-east-2.compute.amazonaws.com/TravelsAgency/public",
+                          )}
+                          alt=""
+                        />
+                        <div
+                          style={{
+                            fontWeight: "bold",
+                            position: "absolute",
+                            top: "25px",
+                            left: "-105px",
+                            // background: "#f7f8f8f8",
+                          }}
+                        >
+                          <Button
+                            style={{
+                              background: "#1EC6B6",
+                              border: "none",
+                              color: "white",
+                              borderRadius: "15px",
+                            }}
+                          >
+                            {tour.price}LE
+                          </Button>
+                        </div>
+                      </>
+                    }
+                  >
+                    <Meta title={tour.name} />
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "flex-end",
+                        alignItems: "center",
+                      }}
+                    >
+                      <ClockCircleOutlined />
+                      &nbsp; {tour.duration} days
+                    </div>
+                  </Card>
+                </div>
+              </Col>
+            ))}
           </Row>
         </div>
         <Button
@@ -269,7 +277,7 @@ export default function Home() {
             borderStyle: "none",
           }}
         >
-          More places
+          <Link to="/tours">More places</Link>
         </Button>
       </div>
 
@@ -282,7 +290,7 @@ export default function Home() {
           nextArrow={<ArrowRightOutlined />}
         >
           <div style={contentStyle1}>
-            <img src="xauthor.webp" style={{ marginLeft: "22%" }}></img>
+            <img src="xauthor.webp" style={{ marginLeft: "22%" }} alt=""></img>
             <p>
               "Working in conjunction with humanitarian aid agencies, we have
               supported programmes to help alleviate human suffering."
@@ -290,7 +298,7 @@ export default function Home() {
             <p>-Micky Mouse</p>
           </div>
           <div style={contentStyle1}>
-            <img src="xauthor.webp" style={{ marginLeft: "22%" }}></img>
+            <img src="xauthor.webp" style={{ marginLeft: "22%" }} alt=""></img>
             <p>
               "Working in conjunction with humanitarian aid agencies, we have
               supported programmes to help alleviate human suffering."
@@ -298,7 +306,7 @@ export default function Home() {
             <p>-Jerry Mouse</p>
           </div>
           <div style={contentStyle1}>
-            <img src="xauthor.webp" style={{ marginLeft: "22%" }}></img>
+            <img src="xauthor.webp" style={{ marginLeft: "22%" }} alt=""></img>
             <p>
               "Working in conjunction with humanitarian aid agencies, we have
               supported programs to help alleviate human suffering."
@@ -310,7 +318,7 @@ export default function Home() {
 
       <div className="footer">
         <div>
-          <img src="xfooter.webp"></img>
+          <img src="xfooter.webp" alt=""></img>
           <p>
             5th flora, 700/D kings road, green lane New York-1782 +10 367 826
             2567 contact@carpenter.com
