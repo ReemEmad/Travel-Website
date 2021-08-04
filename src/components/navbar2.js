@@ -39,26 +39,22 @@ export default function Navbar() {
         </div>
         <div className="navbar__item" style={{ marginLeft: "44%" }}>
           <Link to="/">
-            {" "}
             10(256)-928 256 <PhoneFilled />
           </Link>
         </div>
         <div className="navbar__item">
           <Link to="/">
-            {" "}
             <InstagramOutlined />
           </Link>
         </div>
         <div className="navbar__item">
           <Link to="/">
-            {" "}
             <FacebookOutlined />
           </Link>
         </div>
         <div className="navbar__item">
           <Link to="/">
-            {" "}
-            <GooglePlusOutlined />{" "}
+            <GooglePlusOutlined />
           </Link>
         </div>
       </header>
