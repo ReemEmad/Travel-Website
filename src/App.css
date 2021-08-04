@@ -1,5 +1,15 @@
 @import "~antd/dist/antd.css";
 
+:root {
+  --font: "Open Sans", sans-serif;
+  --color-bg: #252525;
+  --color-txt: #fff;
+  --color-home: #f1c40f;
+  --color-about: #16a085;
+  --color-projects: #ff4a52;
+  --color-contacts: #2980b9;
+}
+
 .site-page-header {
   /* border: 1px solid rgb(235, 237, 240); */
 }
@@ -25,7 +35,7 @@
 }
 .centeredBtn {
   position: absolute;
-  top: 65%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -164,10 +174,83 @@ h3 {
 
 .ant-btn:hover,
 .ant-btn:focus {
-  color: #1ec6b6;
-  border-color: #1ec6b6;
+  color: #ffffff;
 }
 
 .ant-row-middle {
   align-items: flex-start;
+}
+
+main {
+  margin: 16px;
+}
+
+/* navbar v2 */
+
+.navbar {
+  display: flex;
+  align-items: center;
+  /* background: transparent; */
+  background: #faf9f9;
+  color: black;
+  font-family: Helvetica;
+  font-weight: 300;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  /* padding-left: 5rem; */
+}
+.navbar a {
+  color: black;
+}
+/* 
+.navbar:active {
+  background: var(--color-about);
+} */
+.navbar__title {
+  margin-right: auto;
+  font-size: 150%;
+  padding: 12px 16px;
+}
+/* //TODO */
+.navbar__item {
+  margin: 16px 16px;
+  cursor: pointer;
+  color: inherit;
+  text-decoration: none;
+  padding: 0.4rem 0.04rem;
+  letter-spacing: 0.2rem;
+  /* position relative to absolute position the connected pseudo element */
+  position: relative;
+}
+.navbar_right_item {
+  /* margin-right: 10%; */
+  font-size: 100%;
+  padding: 12px 15px;
+  letter-spacing: 0.2rem;
+  position: relative;
+}
+.navbar__item:before,
+.navbar_right_item:before {
+  /* include a faux-border with a pseudo element  */
+  content: "";
+  position: absolute;
+  /* by default have the faux-border hidden from view */
+  top: 100%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  /* transition for the hover state */
+  transition: all 0.3s ease-out;
+}
+
+.navbar__item:before,
+.navbar_right_item:before {
+  background: var(--color-projects);
+}
+
+.navbar__item:hover:before,
+.navbar_right_item:hover:before {
+  /* on hover, change the bottom property to have the faux-border stretch from the top down */
+  bottom: -5px;
 }
