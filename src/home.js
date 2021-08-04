@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import Navbar from "./components/navbar"
+import Navbar from "./components/navbar2"
 import {
   Carousel,
   Button,
@@ -106,7 +106,7 @@ export default function Home() {
           {/* {//categories} */}
           {categories.map((item) => (
             <div className="container">
-              <p className="centered">{item.name}</p>
+              {/* <p className="centered">{item.name}</p> */}
               <Button size="large" className="centeredBtn" type="primary">
                 Explore Now
               </Button>
@@ -125,34 +125,36 @@ export default function Home() {
         </Carousel>
       </div>
 
-      {/* <div className="search">
+      {/* //TODO */}
+      {/* //Search */}
+
+      <div className="search">
         <p style={{ marginTop: "10px" }}>Where you want to go?</p>
         <Input placeholder="Where to go?" />
         <Space direction="vertical">
           <DatePicker onChange={onChange} />
         </Space>
-     
-        <Dropdown overlay={menu}>
-          <a className="ant-dropdown-link" onClick={(e) => e.preventDefault()}>
-            Travel Type {"   "} <DownOutlined />
-          </a>
-        </Dropdown>
+
         <Button size="middle" type="primary" onClick={searchFn}>
           Search
         </Button>
-      </div> */}
+      </div>
 
       <div className="destinations">
-        <h1>Popular Cities</h1>
+        <h1 style={{ fontSize: "220%" }}>Popular Cities</h1>
+        <p>
+          Suffered alteration in some form, by injected humour or good day
+          randomised booth anim 8-bit hella wolf moon beard words.
+        </p>
         <div className="grid">
           <Row gutter={16}>
             {categories.map((item) => (
               <Col className="gutter-row" span={8}>
-                <div style={style}>
+                <div className="destinations_card">
                   <img
                     alt=""
                     color="#4C4C4C"
-                    width="350px"
+                    width="100%"
                     height="200px"
                     src={item.images[0].path.replace(
                       "127.0.0.1:8000",
@@ -161,12 +163,15 @@ export default function Home() {
                   />
                   <div
                     style={{
-                      color: "#F2F2F2",
-                      fontWeight: "bold",
+                      color: "white",
+                      fontFamily: "Noto Sans JP",
+                      fontSize: "25px",
                       position: "absolute",
                       top: "150px",
-                      left: "105px",
-                      background: "#FF4A52",
+                      left: "40px",
+                      transform: "none",
+
+                      // background: "#FF4A52",
                     }}
                   >
                     {item.name}
@@ -210,6 +215,10 @@ export default function Home() {
 
       <div className="places">
         <h1>Popular Tours</h1>
+        <p>
+          Suffered alteration in some form, by injected humour or good day
+          randomised booth anim 8-bit hella wolf moon beard words.
+        </p>
         <div className="places_grid">
           <Row gutter={30} style={{ marginLeft: "30px" }}>
             {tours.map((tour) => (
@@ -251,12 +260,13 @@ export default function Home() {
                       </>
                     }
                   >
-                    <Meta title={tour.name} />
+                    <Meta title={tour.name} style={{ marginRight: "67%" }} />
                     <div
                       style={{
                         display: "flex",
-                        justifyContent: "flex-end",
+                        justifyContent: "flex-start",
                         alignItems: "center",
+                        paddingTop: "15px",
                       }}
                     >
                       <ClockCircleOutlined />
