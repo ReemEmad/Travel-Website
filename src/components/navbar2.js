@@ -37,8 +37,29 @@ export default function Navbar() {
         <div className="navbar_right_item">
           <Link to="/blog">Blog</Link>
         </div>
+        <div className="navbar__item" style={{ marginLeft: "44%" }}>
+          <Link to="/">
+            {" "}
+            10(256)-928 256 <PhoneFilled />
+          </Link>
+        </div>
         <div className="navbar__item">
-          <Link to="/">parki</Link>
+          <Link to="/">
+            {" "}
+            <InstagramOutlined />
+          </Link>
+        </div>
+        <div className="navbar__item">
+          <Link to="/">
+            {" "}
+            <FacebookOutlined />
+          </Link>
+        </div>
+        <div className="navbar__item">
+          <Link to="/">
+            {" "}
+            <GooglePlusOutlined />{" "}
+          </Link>
         </div>
       </header>
     </div>
