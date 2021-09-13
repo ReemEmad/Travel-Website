@@ -115,7 +115,7 @@ export default function Navbar() {
         <Menu.Item>
           <GooglePlusOutlined />
         </Menu.Item>
-        <Menu.Item
+        {/* <Menu.Item
           onClick={showModal}
           style={{
             background: "red",
@@ -125,7 +125,7 @@ export default function Navbar() {
           }}
         >
           <SearchOutlined style={{ color: "#ffffff", fontWeight: "900" }} />
-        </Menu.Item>
+        </Menu.Item> */}
       </Menu>
 
       <Modal

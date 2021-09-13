@@ -39,6 +39,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
 .ant-btn-lg {
   height: 50px;
   padding: 6px 50px;
@@ -70,6 +71,7 @@
   padding: 160px;
   text-align: center;
 }
+
 .destinations p {
   margin: 10px auto 40px auto;
   width: 550px;
@@ -80,7 +82,7 @@
   transition: transform 0.25s;
 }
 .destinations_card:hover {
-  background: red;
+  /* background: red; */
   box-shadow: 1px 4px 9px -1px rgba(0, 0, 0, 0.88);
   transform: translateY(-10px);
 }
@@ -271,4 +273,27 @@ main {
 .navbar_right_item:hover:before {
   /* on hover, change the bottom property to have the faux-border stretch from the top down */
   bottom: -5px;
+}
+
+.sider-tour {
+  /* background: #eaecf0; */
+  background: var(--color-about);
+  /* background: #ffffff; */
+}
+.ant-layout-sider {
+  height: fit-content;
+  padding: 2%;
+  min-width: 300px !important;
+  max-width: 300px !important;
+  width: 300px !important;
+  background: var(--color-about);
+  margin-top: 5%;
+  margin-right: 10%;
+  border-radius: 5px;
+}
+
+.ant-layout-header {
+  height: fit-content;
+  padding: 0;
+  overflow: hidden;
 }

@@ -1,6 +1,5 @@
 import axios from "axios"
-let url =
-  "http://ec2-18-188-18-65.us-east-2.compute.amazonaws.com/TravelsAgency/public/api"
+let url = "http://agile-garden-81549.herokuapp.com/api"
 
 export let getData = () => {
   let result = axios.get(url + "/tour")
@@ -12,7 +11,23 @@ export let getSingleTour = (id) => {
   return result
 }
 
-export let filterTour = () => {
-  let result = axios.post(url + "/tour/filter")
+export let filterTour = (obj) => {
+  let result = axios.post(url + "/tour/filter", obj)
+  return result
+}
+
+//reservation
+
+export let getPayment = () => {
+  let result = axios.get(url + "/setting/payment")
+  return result
+}
+
+export let reserveTour = (obj) => {
+  let result = axios.post(url + "/reservation", obj, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  })
   return result
 }

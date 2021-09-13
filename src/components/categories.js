@@ -3,7 +3,7 @@ import { Card, Button, Row, Col, Rate, Carousel } from "antd"
 import imgSrc1 from "../pexels-alesia-kozik-6016498.jpg"
 import imgSrc2 from "../pexels-alesia-kozik-6016757.jpg"
 import { categoriesApi } from "../Apis/homeApis"
-import Navbar from "./navbar"
+import Navbar from "./navbar2"
 
 export default function Categories() {
   const [categories, setcategories] = useState([])

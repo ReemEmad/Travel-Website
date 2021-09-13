@@ -12,7 +12,9 @@ import {
   Col,
   Divider,
   Card,
+  Spin,
 } from "antd"
+import imgSrc from "./banner.png.webp"
 import { Link } from "react-router-dom"
 import {
   DownOutlined,
@@ -26,13 +28,16 @@ import { toursApi, searchApi, categoriesApi } from "./Apis/homeApis"
 export default function Home() {
   const [tours, setTours] = useState([])
   const [categories, setCategories] = useState([])
+  const [searchText, setsearchText] = useState("")
   const [date, setDate] = useState("")
+  const [loading, setloading] = useState(false)
 
   let getTours = async () => {
     let { data } = await toursApi()
     setTours(data)
     console.log(data)
   }
+
   let getCategories = async () => {
     let { data } = await categoriesApi()
     setCategories(data)
@@ -66,13 +71,14 @@ export default function Home() {
     console.log(dateString)
   }
 
-  let searchFn = () => {
-    let data = new FormData()
-    data.append("key", "alexandria")
-    data.append("value", date)
-
-    let result = searchApi(data)
-    console.log(result)
+  let searchFn = async () => {
+    let formdata = new FormData()
+    formdata.append("key", searchText)
+    formdata.append("value", date)
+    setloading(true)
+    let { data } = await searchApi(formdata)
+    console.log(data)
+    setloading(false)
   }
 
   const menu = (
@@ -130,7 +136,10 @@ export default function Home() {
 
       <div className="search">
         <p style={{ marginTop: "10px" }}>Where you want to go?</p>
-        <Input placeholder="Where to go?" />
+        <Input
+          placeholder="Where to go?"
+          onChange={(e) => setsearchText(e.target.value)}
+        />
         <Space direction="vertical">
           <DatePicker onChange={onChange} />
         </Space>
@@ -141,46 +150,56 @@ export default function Home() {
       </div>
 
       <div className="destinations">
-        <h1 style={{ fontSize: "220%" }}>Popular Cities</h1>
-        <p>
-          Suffered alteration in some form, by injected humour or good day
-          randomised booth anim 8-bit hella wolf moon beard words.
-        </p>
-        <div className="grid">
-          <Row gutter={16}>
-            {categories.map((item) => (
-              <Col className="gutter-row" span={8}>
-                <div className="destinations_card">
-                  <img
-                    alt=""
-                    color="#4C4C4C"
-                    width="100%"
-                    height="200px"
-                    src={item.images[0].path.replace(
-                      "127.0.0.1:8000",
-                      "ec2-18-188-18-65.us-east-2.compute.amazonaws.com/TravelsAgency/public",
-                    )}
-                  />
-                  <div
-                    style={{
-                      color: "white",
-                      fontFamily: "Noto Sans JP",
-                      fontSize: "25px",
-                      position: "absolute",
-                      top: "150px",
-                      left: "40px",
-                      transform: "none",
+        {loading ? (
+          <Spin tip="loading..."></Spin>
+        ) : (
+          <>
+            <h1 style={{ fontSize: "220%" }}>Popular Cities</h1>
+            <p>
+              Suffered alteration in some form, by injected humour or good day
+              randomised booth anim 8-bit hella wolf moon beard words.
+            </p>
+            <div className="grid">
+              <Row gutter={16}>
+                {categories.map((item) => (
+                  <Col className="gutter-row" span={8}>
+                    <div className="destinations_card">
+                      <img
+                        alt=""
+                        color="#4C4C4C"
+                        width="100%"
+                        height="200px"
+                        src={item.images[0].path}
+                        //   .replace(
+                        //   "127.0.0.1:8000",
+                        //   "ec2-18-188-18-65.us-east-2.compute.amazonaws.com/TravelsAgency/public",
+                        // )}
+                      />
+                      <div
+                        style={{
+                          color: "white",
+                          fontFamily: "Noto Sans JP",
+                          fontSize: "25px",
+                          position: "absolute",
+                          top: "150px",
+                          left: "40px",
+                          transform: "none",
 
-                      // background: "#FF4A52",
-                    }}
-                  >
-                    {item.name}
-                  </div>
-                </div>
-              </Col>
-            ))}
-          </Row>
-          {/* <Row gutter={16}>
+                          // background: "#FF4A52",
+                        }}
+                      >
+                        {item.name}
+                      </div>
+                    </div>
+                  </Col>
+                ))}
+              </Row>
+            </div>
+          </>
+        )}
+      </div>
+
+      {/* <Row gutter={16}>
             <Col className="gutter-row" span={8}>
               <div style={style}>
                 {" "}
@@ -199,8 +218,6 @@ export default function Home() {
               </div>
             </Col>
           </Row> */}
-        </div>
-      </div>
 
       <div className="newsletter">
         <h2>Subscribe to our newsletter</h2>
@@ -230,13 +247,18 @@ export default function Home() {
                     style={{ width: 350 }}
                     cover={
                       <>
-                        <img
-                          src={tour.images[0].path.replace(
-                            "127.0.0.1:8000",
-                            "ec2-18-188-18-65.us-east-2.compute.amazonaws.com/TravelsAgency/public",
-                          )}
-                          alt=""
-                        />
+                        <Link to={`/tour/${tour.id}`}>
+                          <img
+                            src={imgSrc}
+                            width="350px"
+                            // src={tour.images[0].path}
+                            //   .replace(
+                            //   "127.0.0.1:8000",
+                            //   "ec2-18-188-18-65.us-east-2.compute.amazonaws.com/TravelsAgency/public",
+                            // )}
+                            alt=""
+                          />
+                        </Link>
                         <div
                           style={{
                             fontWeight: "bold",

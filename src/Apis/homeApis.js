@@ -1,6 +1,5 @@
 import axios from "axios"
-let url =
-  "http://ec2-18-188-18-65.us-east-2.compute.amazonaws.com/TravelsAgency/public/api"
+let url = "http://agile-garden-81549.herokuapp.com/api"
 
 export let toursApi = () => {
   let result = axios.get(url + "/tours")
