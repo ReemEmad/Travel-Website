@@ -116,15 +116,12 @@ export default function Home() {
               <Button size="large" className="centeredBtn" type="primary">
                 Explore Now
               </Button>
-              <img
-                // style={contentStyle}
-                src={item.images[0].path.replace(
-                  "127.0.0.1:8000",
-                  "ec2-18-188-18-65.us-east-2.compute.amazonaws.com/TravelsAgency/public",
-                )}
-                alt=""
-                // width="300"
-                // height="400"
+              <div
+                className="imgClass"
+                // src={item.images[0].path.replace(
+                //   "127.0.0.1:8000",
+                //   "ec2-18-188-18-65.us-east-2.compute.amazonaws.com/TravelsAgency/public",
+                // )}
               />
             </div>
           ))}
@@ -166,31 +163,17 @@ export default function Home() {
                     <div className="destinations_card">
                       <img
                         alt=""
-                        color="#4C4C4C"
                         width="100%"
-                        height="200px"
-                        src={item.images[0].path}
+                        height="240px"
+                        src="https://images.pexels.com/photos/2058911/pexels-photo-2058911.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+                        // src={item.images[0].path}
                         //   .replace(
                         //   "127.0.0.1:8000",
                         //   "ec2-18-188-18-65.us-east-2.compute.amazonaws.com/TravelsAgency/public",
                         // )}
                       />
-                      <div
-                        style={{
-                          color: "white",
-                          fontFamily: "Noto Sans JP",
-                          fontSize: "25px",
-                          position: "absolute",
-                          top: "150px",
-                          left: "40px",
-                          transform: "none",
-
-                          // background: "#FF4A52",
-                        }}
-                      >
-                        {item.name}
-                      </div>
                     </div>
+                    <div className="cardItemName">{item.name}</div>
                   </Col>
                 ))}
               </Row>
@@ -250,7 +233,8 @@ export default function Home() {
                         <Link to={`/tour/${tour.id}`}>
                           <img
                             src={imgSrc}
-                            width="350px"
+                            width="350"
+                            height="200"
                             // src={tour.images[0].path}
                             //   .replace(
                             //   "127.0.0.1:8000",
@@ -282,7 +266,7 @@ export default function Home() {
                       </>
                     }
                   >
-                    <Meta title={tour.name} style={{ marginRight: "67%" }} />
+                    <Meta title={tour.name} style={{ marginRight: "0%" }} />
                     <div
                       style={{
                         display: "flex",

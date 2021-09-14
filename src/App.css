@@ -68,7 +68,7 @@
 }
 
 .destinations {
-  padding: 160px;
+  padding: 80px 160px;
   text-align: center;
 }
 
@@ -83,7 +83,7 @@
 }
 .destinations_card:hover {
   /* background: red; */
-  box-shadow: 1px 4px 9px -1px rgba(0, 0, 0, 0.88);
+  box-shadow: 1px 4px 9px -1px rgba(0, 0, 0, 0.404);
   transform: translateY(-10px);
 }
 .newsletter {
@@ -92,6 +92,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.cardItemName {
+  color: rgb(0, 0, 0);
+  font-family: "Noto Sans JP", cursive;
+  font-size: 25px;
+
+  /* position: "absolute";
+  top: "150px";
+  left: "40px"; */
+  transition: transform 0.25s;
+
+  /* background: "#FF4A52", */
 }
 
 .places p {
@@ -119,7 +131,7 @@ h3 {
 }
 
 .places_grid {
-  text-align: center;
+  text-align: left;
   /* padding-left: 20%; */
 }
 
@@ -296,4 +308,13 @@ main {
   height: fit-content;
   padding: 0;
   overflow: hidden;
+}
+
+.imgClass {
+  background: red
+    url("https://images.pexels.com/photos/6005031/pexels-photo-6005031.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")
+    no-repeat center center;
+  width: 100%;
+  height: 70vh;
+  box-shadow: 190px 100px 191px 181px rgba(0, 0, 0, 0.473) inset;
 }
