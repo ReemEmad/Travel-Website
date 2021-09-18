@@ -7,7 +7,6 @@ import {
   Row,
   Col,
   Rate,
-  Carousel,
   Space,
   DatePicker,
   Typography,
@@ -71,6 +70,7 @@ export default function AllTours() {
     setDate(dateString)
     console.log(dateString)
   }
+
   function changeSlider(val) {
     setstartPrice(val[0])
     setendPrice(val[1])
@@ -87,8 +87,10 @@ export default function AllTours() {
   }
 
   let filterResult = async () => {
-    if (categoryId === "" || date === "")
+    if (categoryId === "" || date === "") {
       message.error("Please choose your filter data")
+      return
+    }
     setloading(true)
     let data = new FormData()
     data.append("categoryId", categoryId)
@@ -100,6 +102,7 @@ export default function AllTours() {
     console.log(result)
     setTours(result.data)
   }
+
   return (
     <>
       <Navbar />
@@ -144,7 +147,11 @@ export default function AllTours() {
           <h1 style={{ fontSize: "37px" }}>Tours</h1>
         </Header> */}
         {loading ? (
-          <Spin tip="loading" />
+          <div
+            style={{ marginTop: "5%", marginLeft: "50%", paddingBottom: "5%" }}
+          >
+            <Spin tip="loading" size="large" />
+          </div>
         ) : (
           <div
             style={{

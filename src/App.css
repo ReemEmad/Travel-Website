@@ -14,6 +14,10 @@
   /* border: 1px solid rgb(235, 237, 240); */
 }
 
+Spin {
+  color: var(--color-about);
+}
+
 .ant-menu-horizontal {
   border-bottom: none;
 }
@@ -81,6 +85,9 @@
   padding: "8px 0";
   transition: transform 0.25s;
 }
+.ant-form-item-label > label {
+  color: var(--color-txt);
+}
 .destinations_card:hover {
   /* background: red; */
   box-shadow: 1px 4px 9px -1px rgba(0, 0, 0, 0.404);
@@ -132,7 +139,6 @@ h3 {
 
 .places_grid {
   text-align: left;
-  /* padding-left: 20%; */
 }
 
 .testimonials {
@@ -142,6 +148,7 @@ h3 {
   /* background: #f7fa; */
   background: #f7fafd;
 }
+
 .testimonials p {
   font-size: 18px;
   width: 500px;
@@ -193,6 +200,15 @@ h3 {
   background: #ececec;
 }
 
+.singletourCard {
+  display: flex;
+  align-items: center;
+}
+.pricesSection {
+  display: flex;
+
+  align-items: center;
+}
 .ant-btn-primary {
   background: #1ec6b6;
   border-color: #1ec6b6;
@@ -203,10 +219,13 @@ h3 {
   background: #0f6b62;
   border-color: #0f6b62;
 }
-
 .ant-btn:hover,
 .ant-btn:focus {
   color: #ffffff;
+}
+.btn-submit:hover {
+  background: #0f6b62;
+  border-color: #0f6b62;
 }
 
 .ant-row-middle {
@@ -288,6 +307,7 @@ main {
 }
 
 .sider-tour {
+  color: var(--color-txt) !important;
   /* background: #eaecf0; */
   background: var(--color-about);
   /* background: #ffffff; */
