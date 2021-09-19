@@ -27,6 +27,7 @@ import {
 import imgSrc from "../banner.png.webp"
 import imgSrc1 from "../nile.jpg"
 import { getSingleTour, reserveTour, getPayment } from "../Apis/toursApis"
+import AppFooter from "./AppFooter"
 
 export default function Tour(props) {
   const [loading, setloading] = useState(false)
@@ -117,6 +118,7 @@ export default function Tour(props) {
     setloading(false)
     // console.log(data.tour[0])
   }
+
   var arr = []
   let getRun = () => {
     for (let i = 0; i < tourDuration; i++) {
@@ -144,6 +146,7 @@ export default function Tour(props) {
     "Friday",
     "Saturday",
   ]
+
   return (
     <div style={{ width: "100%" }}>
       <Layout>
@@ -478,7 +481,7 @@ export default function Tour(props) {
             </section>
           </Sider>
         </Layout>
-        <Footer></Footer>
+        <AppFooter />
       </Layout>
     </div>
   )

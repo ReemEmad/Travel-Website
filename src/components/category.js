@@ -6,6 +6,7 @@ import imgSrc from "../banner.png.webp"
 import { ClockCircleOutlined } from "@ant-design/icons"
 import { Link } from "react-router-dom"
 import { getSingleCategoryApi } from "../Apis/categoryApis"
+import AppFooter from "./AppFooter"
 
 export default function Category(props) {
   const { Header, Footer, Sider, Content } = Layout
@@ -110,6 +111,7 @@ export default function Category(props) {
               ))}
             </Row>
           </Content>
+          <AppFooter />
         </>
       )}
     </>

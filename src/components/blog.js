@@ -5,6 +5,7 @@ import { Row, Col, Divider, Button } from "antd"
 import { UserOutlined } from "@ant-design/icons"
 import { getBlogsApi } from "../Apis/blogApis"
 import { Link } from "react-router-dom"
+import AppFooter from "./AppFooter"
 
 export default function Blog() {
   const [data, setdata] = useState([])
@@ -63,6 +64,7 @@ export default function Blog() {
           ))}
         </Row>
       </section>
+      <AppFooter />
     </>
   )
 }

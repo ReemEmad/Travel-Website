@@ -8,6 +8,7 @@ import Navbar from "./navbar2"
 import imgSrc from "../banner.png.webp"
 import { ClockCircleOutlined } from "@ant-design/icons"
 import { Link } from "react-router-dom"
+import AppFooter from "./AppFooter"
 
 export default function Categories() {
   const { Header, Footer, Sider, Content } = Layout
@@ -126,6 +127,8 @@ export default function Categories() {
           </div>
         </>
       )}
+
+      <AppFooter />
     </>
   )
 }
