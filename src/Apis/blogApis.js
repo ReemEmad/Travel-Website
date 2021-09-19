@@ -5,3 +5,8 @@ export const getBlogsApi = async () => {
   let result = await axios.get(url + "/blog")
   return result
 }
+
+export const getSingleBlogApi = async (id) => {
+  let result = await axios.get(url + `/blog/${id}`)
+  return result
+}

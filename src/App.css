@@ -308,18 +308,12 @@ main {
   bottom: -5px;
 }
 
-.sider-tour {
-  /* color: var(--color-txt) !important; */
-  /* background: #eaecf0; */
-  background: var(--color-sidetour);
-  /* background: #ffffff; */
-}
 .ant-layout-sider {
   height: fit-content;
   padding: 2%;
-  min-width: 300px !important;
+  /* min-width: 300px !important;
   max-width: 300px !important;
-  width: 300px !important;
+  width: 300px !important; */
   background: var(--color-sidetour);
   margin: 5% 10% 0 0;
   /* margin-right: 10%; */

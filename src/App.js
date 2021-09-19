@@ -7,6 +7,7 @@ import Blog from "./components/blog"
 import AllTours from "./components/allTours"
 import Categories from "./components/categories"
 import Category from "./components/category"
+import SingleBlog from "./components/SingleBlog"
 
 function App() {
   return (
@@ -27,6 +28,15 @@ function App() {
             return (
               <>
                 <Category {...routeProps} />
+              </>
+            )
+          }}
+        </Route>
+        <Route path="/blog/:id">
+          {(routeProps) => {
+            return (
+              <>
+                <SingleBlog {...routeProps} />
               </>
             )
           }}

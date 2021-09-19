@@ -84,7 +84,7 @@ export default function Tour(props) {
     data.append("tour_id", props.match.params.id)
     let result = await reserveTour(data)
     console.log(result)
-    message.success("Your data was sent sucessfully")
+    message.success("Your data was sent sucessfully", [2.5])
     form.resetFields()
   }
 
@@ -156,8 +156,8 @@ export default function Tour(props) {
           {loading ? (
             <div>loading...</div>
           ) : (
-            <Content style={{ width: "80%" }}>
-              <div style={{ padding: "50px 70px 40px 100px" }}>
+            <Content>
+              <div style={{ padding: "50px 3px 40px 100px" }}>
                 <h1
                   style={{
                     textAlign: "left",
@@ -284,7 +284,7 @@ export default function Tour(props) {
                           <div
                             style={{
                               display: "flex",
-                              justifyContent: "left",
+                              justifyContent: "center",
                               // alignItems: "center",
                               paddingBottom: "20px",
                             }}
@@ -385,7 +385,7 @@ export default function Tour(props) {
               </Button>
             </Content>
           )}
-          <Sider>
+          <Sider width="400">
             <section className="sider-tour">
               <h1
                 style={{
@@ -442,7 +442,7 @@ export default function Tour(props) {
                   name="number_of_people"
                   required
                 >
-                  <InputNumber min="1" />
+                  <InputNumber min="1" max="20" />
                 </Form.Item>
                 <Form.Item
                   name="payment_method_id"
