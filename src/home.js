@@ -168,24 +168,37 @@ export default function Home() {
                 <Row gutter={16}>
                   {categories.map((item) => (
                     <Col className="gutter-row" span={8}>
-                      <div className="destinations_card">
-                        <img
-                          alt=""
-                          width="100%"
-                          height="240px"
-                          src="https://images.pexels.com/photos/2058911/pexels-photo-2058911.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-                          // src={item.images[0].path}
-                          //   .replace(
-                          //   "127.0.0.1:8000",
-                          //   "ec2-18-188-18-65.us-east-2.compute.amazonaws.com/TravelsAgency/public",
-                          // )}
-                        />
-                      </div>
+                      <Link to={`/category/${item.id}`}>
+                        <div className="destinations_card">
+                          <img
+                            alt=""
+                            width="100%"
+                            height="240px"
+                            src="https://images.pexels.com/photos/2058911/pexels-photo-2058911.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+                            // src={item.images[0].path}
+                            //   .replace(
+                            //   "127.0.0.1:8000",
+                            //   "ec2-18-188-18-65.us-east-2.compute.amazonaws.com/TravelsAgency/public",
+                            // )}
+                          />
+                        </div>
+                      </Link>
                       <div className="cardItemName">{item.name}</div>
                     </Col>
                   ))}
                 </Row>
               </div>
+              <Button
+                size="large"
+                type="primary"
+                style={{
+                  background: "#FF4A52",
+                  marginTop: "20px",
+                  borderStyle: "none",
+                }}
+              >
+                <Link to="/categories">More Cities</Link>
+              </Button>
             </>
           )}
         </div>
@@ -211,7 +224,7 @@ export default function Home() {
           </Row> */}
 
         <div className="newsletter">
-          <h2>Subscribe to our newsletter</h2>
+          <h2>Subscribe To Our Newsletter</h2>
           <div>
             {" "}
             <Input placeholder="Your mail" size="large" />

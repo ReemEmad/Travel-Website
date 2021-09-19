@@ -6,6 +6,7 @@ import Navbar from "./components/navbar2"
 import Blog from "./components/blog"
 import AllTours from "./components/allTours"
 import Categories from "./components/categories"
+import Category from "./components/category"
 
 function App() {
   return (
@@ -17,6 +18,15 @@ function App() {
               <>
                 <Navbar />
                 <Tour {...routeProps} />
+              </>
+            )
+          }}
+        </Route>
+        <Route path="/category/:id">
+          {(routeProps) => {
+            return (
+              <>
+                <Category {...routeProps} />
               </>
             )
           }}

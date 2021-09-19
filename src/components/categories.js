@@ -92,93 +92,38 @@ export default function Categories() {
               style={{ marginLeft: "80px", marginBottom: "20px" }}
             >
               {categories.map((item) => (
-                <Col className="gutter-row" span={8} key={item.id}>
-                  <Card
-                    onClick={() => filterTourByCategory(item.id)}
-                    hoverable
-                    style={{ width: 340 }}
-                    cover={
-                      <img
-                        // src={item.images[0].path.replace(
-                        //   "127.0.0.1:8000",
-                        //   "ec2-18-188-18-65.us-east-2.compute.amazonaws.com/TravelsAgency/public",
-                        // )}
-                        src={imgSrc1}
-                        width="300px"
-                        height="250px"
-                        alt=""
-                      />
-                    }
-                  >
-                    <Meta title={item.name} description={item.description} />
-                  </Card>
-                </Col>
+                <>
+                  <Col className="gutter-row" span={8} key={item.id}>
+                    <Link to={`/category/${item.id}`}>
+                      <Card
+                        // onClick={() => window.(`/category/${item.id}`)}
+                        // onClick={() => filterTourByCategory(item.id)}
+                        hoverable
+                        style={{ width: 340 }}
+                        cover={
+                          <img
+                            // src={item.images[0].path.replace(
+                            //   "127.0.0.1:8000",
+                            //   "ec2-18-188-18-65.us-east-2.compute.amazonaws.com/TravelsAgency/public",
+                            // )}
+                            src={imgSrc1}
+                            width="300px"
+                            height="250px"
+                            alt=""
+                          />
+                        }
+                      >
+                        <Meta
+                          title={item.name}
+                          description={item.description}
+                        />
+                      </Card>
+                    </Link>
+                  </Col>
+                </>
               ))}
             </Row>
           </div>
-
-          <Content>
-            <h1 style={{ fontFamily: "Helvetica" }} align="middle">
-              {toursHead}
-            </h1>
-            <Row align="center" gutter={8} style={{ marginTop: "2%" }}>
-              {tours.map((item) => (
-                <Col
-                  offset="1"
-                  className="gutter-row"
-                  span={8}
-                  key={item.id}
-                  style={{ marginBottom: "20px" }}
-                >
-                  <Link to={`/tour/${item.id}`}>
-                    <img
-                      src={imgSrc1}
-                      // onClick={() => console.log("sss")}
-                      // src={item.images[0].path.replace(
-                      //   "127.0.0.1:8000",
-                      //   "ec2-18-188-18-65.us-east-2.compute.amazonaws.com/TravelsAgency/public",
-                      // )}
-                      width="380px"
-                      height="250px"
-                      alt=""
-                    />
-                  </Link>
-
-                  <div
-                    style={{
-                      fontWeight: "bold",
-                      position: "absolute",
-                      top: "25px",
-                      left: "25px",
-                      background: "#f7f8f8f8",
-                    }}
-                  >
-                    <Button
-                      style={{
-                        background: "#FF4A52",
-                        border: "none",
-                        color: "white",
-                      }}
-                    >
-                      {item.price}LE
-                    </Button>
-                    {"        "}
-                  </div>
-                  <h2 style={{ textTransform: "uppercase", marginTop: "10px" }}>
-                    {item.name}
-                  </h2>
-                  <p style={{ fontSize: "17px", width: "75%" }}>
-                    Discover the delights of South America in Argentina, Chile,
-                    and Bolivia on a tailor-made amazing tour. You will
-                    experience touring Buenos Aires,
-                  </p>
-                  <Rate value={"4"} />
-                  <ClockCircleOutlined />
-                  <span>{item.duration} days</span>
-                </Col>
-              ))}
-            </Row>
-          </Content>
         </>
       )}
     </>

@@ -8,6 +8,8 @@
   --color-about: #16a085;
   --color-projects: #ff4a52;
   --color-contacts: #2980b9;
+  --color-sidetour: rgba(228, 228, 228, 0.5);
+  --color-sidetour--text: rgba(20, 20, 20, 0.781);
 }
 
 .site-page-header {
@@ -86,7 +88,7 @@ Spin {
   transition: transform 0.25s;
 }
 .ant-form-item-label > label {
-  color: var(--color-txt);
+  color: var(--color-sidetour--text);
 }
 .destinations_card:hover {
   /* background: red; */
@@ -307,9 +309,9 @@ main {
 }
 
 .sider-tour {
-  color: var(--color-txt) !important;
+  /* color: var(--color-txt) !important; */
   /* background: #eaecf0; */
-  background: var(--color-about);
+  background: var(--color-sidetour);
   /* background: #ffffff; */
 }
 .ant-layout-sider {
@@ -318,9 +320,9 @@ main {
   min-width: 300px !important;
   max-width: 300px !important;
   width: 300px !important;
-  background: var(--color-about);
-  margin-top: 5%;
-  margin-right: 10%;
+  background: var(--color-sidetour);
+  margin: 5% 10% 0 0;
+  /* margin-right: 10%; */
   border-radius: 5px;
 }
 

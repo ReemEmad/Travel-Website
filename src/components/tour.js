@@ -34,6 +34,10 @@ export default function Tour(props) {
   const [requiredMark, setRequiredMarkType] = useState("optional")
   const [paymentMethods, setpaymentMethods] = useState([])
   const [tourr, settour] = useState(undefined)
+  const [tourDuration, settourDuration] = useState(0)
+  const [arrdays, setarrdays] = useState([])
+  // const [run, setRun] = useState()
+  const [shedule, setshedule] = useState(Date)
   const { Header, Footer, Sider, Content } = Layout
   const { TabPane } = Tabs
   const { Panel } = Collapse
@@ -108,8 +112,18 @@ export default function Tour(props) {
     setloading(true)
     let { data } = await getSingleTour(id)
     settour(data.tour[0])
+    settourDuration(data.tour[0].duration)
+    setshedule(data.tour[0].schedule)
     setloading(false)
     // console.log(data.tour[0])
+  }
+  var arr = []
+  let getRun = () => {
+    for (let i = 0; i < tourDuration; i++) {
+      arr.push(days[new Date(shedule).getDay() + i])
+    }
+
+    setarrdays(arr)
   }
 
   useEffect(() => {
@@ -117,6 +131,19 @@ export default function Tour(props) {
     getPaymentMethod()
   }, [])
 
+  useEffect(() => {
+    if (shedule && tourDuration) getRun()
+  }, [shedule, tourDuration])
+
+  var days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ]
   return (
     <div style={{ width: "100%" }}>
       <Layout>
@@ -152,8 +179,8 @@ export default function Tour(props) {
                 <div
                   style={{
                     display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
+                    gap: 30,
+                    alignItems: "start",
                     width: "500px",
                   }}
                 >
@@ -166,21 +193,23 @@ export default function Tour(props) {
                     </p>
                     <p>{tourr?.duration} Days</p>
                   </div>
-                  <Divider type="vertical" orientation="right" />
-                  <div>
+                  {/* <Divider type="vertical" orientation="right" /> */}
+                  {/* <div>
                     <FlagOutlined
                       style={{ fontSize: "30px", paddingBottom: "10px" }}
                     />
                     <p style={{ fontSize: "17px", fontWeight: "bold" }}>Type</p>
                     <p>Private tour</p>
-                  </div>
+                  </div> */}
                   <Divider type="vertical" orientation="right" />
                   <div>
                     <CalendarOutlined
                       style={{ fontSize: "30px", paddingBottom: "10px" }}
                     />
                     <p style={{ fontSize: "17px", fontWeight: "bold" }}>Run</p>
-                    <p>Friday, Saturday, Sunday</p>
+                    {arrdays.map((item) => (
+                      <span key={item}>{item}, </span>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -316,7 +345,7 @@ export default function Tour(props) {
                     ))}
                   </section>
                 </TabPane>
-                <TabPane tab="Client Reviews" key="4">
+                {/* <TabPane tab="Client Reviews" key="4">
                   <div className="site-card-border-less-wrapper">
                     <Card
                       title="Cairo Tours & Packages"
@@ -345,7 +374,7 @@ export default function Tour(props) {
                       <Button align="right">Read more</Button>
                     </Card>
                   </div>
-                </TabPane>
+                </TabPane> */}
               </Tabs>
               <Button
                 style={{ margin: "20px 0 50px 95px" }}
@@ -359,7 +388,11 @@ export default function Tour(props) {
           <Sider>
             <section className="sider-tour">
               <h1
-                style={{ fontStyle: "bold", fontSize: "25px", color: "white" }}
+                style={{
+                  fontStyle: "bold",
+                  fontSize: "25px",
+                  // color: "#ff4a52",
+                }}
               >
                 Enquire Now
               </h1>
