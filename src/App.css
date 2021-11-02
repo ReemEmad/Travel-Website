@@ -16,6 +16,18 @@
   /* border: 1px solid rgb(235, 237, 240); */
 }
 
+body {
+  overflow: visible;
+}
+
+.number-input {
+  margin: auto;
+  display: flex;
+  justify-content: space-evenly;
+  /* gap: 50px; */
+  align-items: center;
+}
+
 Spin {
   color: var(--color-about);
 }
@@ -74,7 +86,7 @@ Spin {
 }
 
 .destinations {
-  padding: 80px 160px;
+  padding: 80px 100px;
   text-align: center;
 }
 
@@ -113,6 +125,31 @@ Spin {
   transition: transform 0.25s;
 
   /* background: "#FF4A52", */
+}
+
+.login-container {
+  background: var(--color-projects);
+  width: 300px;
+  height: 350px;
+  padding: 70px 30px;
+  margin: 50px auto;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.login-container h1,
+.register-container h1 {
+  color: var(--color-txt);
+}
+
+.register-container {
+  background: var(--color-projects);
+  width: 350px;
+  height: 500px;
+  padding: 70px 30px;
+  margin: 50px auto;
+  border-radius: 5px;
+  text-align: center;
 }
 
 .places p {
@@ -162,6 +199,9 @@ h3 {
   padding: 80px 90px;
   background: #040e27;
   color: #ffffff;
+  position: relative;
+
+  margin-top: 54px;
 }
 .footer p {
   margin-top: 20px;
@@ -283,6 +323,15 @@ main {
   letter-spacing: 0.2rem;
   position: relative;
 }
+.navbar_right_item-logout {
+  /* margin-right: 10%; */
+  font-size: 100%;
+  padding: 8px 10px;
+  letter-spacing: 0.2rem;
+  position: relative;
+  /* background-color: var(--color-about); */
+  border-radius: 3px;
+}
 .navbar__item:before,
 .navbar_right_item:before {
   /* include a faux-border with a pseudo element  */
@@ -333,4 +382,16 @@ main {
   width: 100%;
   height: 70vh;
   box-shadow: 190px 100px 191px 181px rgba(0, 0, 0, 0.473) inset;
+}
+
+.center-space {
+  margin: auto;
+}
+
+a {
+  color: var(--color-txt);
+}
+
+.tab-style {
+  padding: 30px;
 }

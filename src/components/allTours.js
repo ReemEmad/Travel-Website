@@ -23,7 +23,7 @@ import Navbar from "./navbar2"
 import { Link } from "react-router-dom"
 
 export default function AllTours() {
-  const { Text, Link } = Typography
+  const { Text } = Typography
   const [tours, setTours] = useState([])
   const [loading, setloading] = useState(false)
   const [categories, setCategories] = useState([])

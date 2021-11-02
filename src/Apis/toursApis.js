@@ -23,10 +23,11 @@ export let getPayment = () => {
   return result
 }
 
-export let reserveTour = (obj) => {
+export let reserveTour = (obj, token) => {
   let result = axios.post(url + "/reservation", obj, {
     headers: {
       "Content-Type": "multipart/form-data",
+      Authorization: `Bearer ${token}`,
     },
   })
   return result

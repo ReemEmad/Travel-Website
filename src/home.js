@@ -43,6 +43,10 @@ export default function Home() {
     setLoadingAll(false)
   }
 
+  function handleChange(value) {
+    // setcategoryId(value)
+    console.log(`selected ${value}`)
+  }
   // let getCategories = async () => {
   //   let { data } = await categoriesApi()
   //   setCategories(data)
@@ -56,6 +60,15 @@ export default function Home() {
   }, [])
 
   const { Meta } = Card
+
+  const marks = {
+    0: "0$",
+    20: "20$",
+    50: "50$",
+    75: "75$",
+    100: "100$",
+  }
+
   const contentStyle = {
     height: "700px",
     color: "#fff",
@@ -75,6 +88,11 @@ export default function Home() {
   function onChange(dateString) {
     setDate(dateString)
     console.log(dateString)
+  }
+  function changeSlider(val) {
+    console.log(val)
+    // setstartPrice(val[0])
+    // setendPrice(val[1])
   }
 
   let searchFn = async () => {
@@ -187,6 +205,60 @@ export default function Home() {
                       <div className="cardItemName">{item.name}</div>
                     </Col>
                   ))}
+                  {/* <Col offset={2} style={{ padding: "-50px" }}>
+                    <div
+                      style={{
+                        // marginTop: "50px",
+                        textAlign: "left",
+                        width: "70%",
+                        marginLeft: "25px",
+                        // background: "red",
+                        padding: "10px",
+                        borderRadius: "10px",
+                      }}
+                    >
+                      <h3>Filter Result</h3>
+                      <Select
+                        defaultValue="Country"
+                        style={{ width: "100%", marginTop: "20px" }}
+                        onChange={handleChange}
+                      >
+                        {categories.map((item) => (
+                          <Option value={item.id}>{item.name}</Option>
+                        ))}
+                      </Select>
+
+                      <Space
+                        direction="horizontal"
+                        style={{
+                          // width: "100%",
+                          marginTop: "20px",
+                          marginBottom: "20px",
+                        }}
+                      >
+                        <Text>Choose a date</Text>
+                        <DatePicker onChange={onChange} />
+                      </Space>
+                      <Slider
+                        range
+                        marks={marks}
+                        defaultValue={[20, 75]}
+                        step="10"
+                        onChange={changeSlider}
+                      />
+                      <Button
+                        type="primary"
+                        style={{
+                          marginTop: "20px",
+                          width: "100%",
+                          marginBottom: "6%",
+                        }}
+                        onClick={() => console.log("sjsj")}
+                      >
+                        Confirm
+                      </Button>
+                    </div>
+                  </Col> */}
                 </Row>
               </div>
               <Button

@@ -1,5 +1,6 @@
-import React from "react"
-import { Link } from "react-router-dom"
+import React, { useEffect, useState } from "react"
+import { Link, useHistory } from "react-router-dom"
+import { Button, message } from "antd"
 import {
   MailOutlined,
   AppstoreOutlined,
@@ -9,10 +10,29 @@ import {
   InstagramOutlined,
   LinkedinOutlined,
   GooglePlusOutlined,
-  SearchOutlined,
+  UserOutlined,
 } from "@ant-design/icons"
+import { logout } from "../Apis/userApis"
 
 export default function Navbar() {
+  const history = useHistory()
+  const [welcome, setWelcome] = useState()
+
+  useEffect(() => {
+    const token = localStorage.getItem("token")
+    if (token) {
+      setWelcome("Welcome Back!")
+    }
+  }, [])
+
+  const logoutFn = async () => {
+    let { data } = await logout(localStorage.getItem("token"))
+    console.log(data)
+    localStorage.clear()
+    message.success("You have been successfully logged out")
+    setWelcome(undefined)
+  }
+
   return (
     <div>
       <header className="navbar" style={{ zIndex: "100" }}>
@@ -37,7 +57,30 @@ export default function Navbar() {
         <div className="navbar_right_item">
           <Link to="/blog">Blog</Link>
         </div>
-        <div className="navbar__item" style={{ marginLeft: "44%" }}>
+        {welcome !== undefined && (
+          <div className="navbar_right_item-logout">
+            <Button type="primary" onClick={logoutFn}>
+              Logout
+            </Button>
+          </div>
+        )}
+        {welcome ? (
+          <div className="navbar__item" style={{ marginLeft: "25%" }}>
+            <Link to="/user">
+              <UserOutlined />
+            </Link>
+          </div>
+        ) : (
+          <div className="navbar__item" style={{ marginLeft: "35%" }}>
+            <Button type="primary" onClick={() => history.push("/login")}>
+              Login
+            </Button>
+          </div>
+        )}
+        <div
+          className="navbar__item"
+          // style={{ marginLeft: "44%" }}
+        >
           <Link to="/">
             10(256)-928 256 <PhoneFilled />
           </Link>

@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { PageHeader, Menu, Input, Modal } from "antd"
 import {
   MailOutlined,
@@ -15,6 +15,7 @@ import { Link } from "react-router-dom"
 
 const { SubMenu } = Menu
 export default function Navbar() {
+  const [user, setUser] = useState()
   const [current, setcurrent] = useState("mail")
   const [isModalVisible, setIsModalVisible] = useState(false)
 
