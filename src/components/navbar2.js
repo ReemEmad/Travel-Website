@@ -14,7 +14,7 @@ import {
 } from "@ant-design/icons"
 import { logout } from "../Apis/userApis"
 
-export default function Navbar() {
+export default function Navbar({ props }) {
   const history = useHistory()
   const [welcome, setWelcome] = useState()
 
@@ -31,6 +31,8 @@ export default function Navbar() {
     localStorage.clear()
     message.success("You have been successfully logged out")
     setWelcome(undefined)
+    console.log(window.location.pathname)
+    if (window.location.pathname === "/user") window.location.reload(true)
   }
 
   return (

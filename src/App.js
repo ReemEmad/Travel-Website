@@ -52,7 +52,7 @@ function App() {
             )}
           </Route> */}
 
-          <PrivateRoute path="/user" exact={true} component={UserProfile} />
+          <PrivateRoute path="/user" component={UserProfile} />
           <Route path="/register">
             {(routeProps) => {
               return (

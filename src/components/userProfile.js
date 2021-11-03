@@ -22,11 +22,11 @@ function UserProfile() {
 
   
   useEffect(() => {
-
     setname(localStorage.getItem("name"))
     setemail(localStorage.getItem("email"))
     getReserved()
-  }, [name,email])
+  
+  }, [])
 
   return (
     <>
