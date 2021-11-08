@@ -53,7 +53,7 @@ export default function Category(props) {
             {/* <h1 style={{ fontFamily: "Helvetica" }} align="middle">
               {toursHead} Tours
             </h1> */}
-            <Row align="center" gutter={8} style={{ marginTop: "2%" }}>
+            <Row align="left" gutter={8} style={{ marginTop: "2%" }}>
               {data.map((item) => (
                 <Col
                   offset="1"

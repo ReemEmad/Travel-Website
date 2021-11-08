@@ -10,12 +10,15 @@ export default function AppFooter() {
           contact@carpenter.com
         </p>
       </div>
-      <div>
+      <div className="footer_links">
         <h2>Company</h2>
-        <p>Pricing</p>
-        <p>About</p>
-        <p>Gallery</p>
-        <p>Contact</p>
+        <a href="/">Home</a>
+        <br />
+        <a href="/categories">Categories</a>
+        <br />
+        <a href="/Tours">Tours</a>
+        <br />
+        <a href="/Blog">Blog</a>
       </div>
       <p style={{ alignSelf: "start" }}> Copyright ©2021 All rights reserved</p>
     </div>
