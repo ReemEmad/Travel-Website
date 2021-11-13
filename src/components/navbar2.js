@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from "react"
 import { Link, useHistory } from "react-router-dom"
-import { Button, message } from "antd"
+import { Button, message, Modal, Input, Layout } from "antd"
+import { login } from "../Apis/userApis"
+import { slide as Menu } from "react-burger-menu"
 import {
-  MailOutlined,
-  AppstoreOutlined,
-  SettingOutlined,
   PhoneFilled,
   FacebookOutlined,
   InstagramOutlined,
-  LinkedinOutlined,
   GooglePlusOutlined,
   UserOutlined,
 } from "@ant-design/icons"
@@ -17,6 +15,41 @@ import { logout } from "../Apis/userApis"
 export default function Navbar({ props }) {
   const history = useHistory()
   const [welcome, setWelcome] = useState()
+  const [isModalVisible, setisModalVisible] = useState(false)
+  const [email, setEmail] = useState()
+  const [password, setPassword] = useState()
+  const [loading, setLoading] = useState(false)
+
+  const { Header, Content, Sider } = Layout
+
+  const loginFn = async () => {
+    if (email === "" || password === "") {
+      message.error("please enter your email and password")
+      return
+    }
+    try {
+      setLoading(true)
+      let Fdata = new FormData()
+      Fdata.append("email", email)
+      Fdata.append("password", password)
+      let { data } = await login(Fdata)
+      localStorage.setItem("token", data.token)
+      console.log(data)
+      localStorage.setItem("name", data.name)
+      localStorage.setItem("email", data.email)
+      setLoading(false)
+      setWelcome("haha")
+      setisModalVisible(false)
+      message.success("You've logged in successfully")
+    } catch (e) {
+      setLoading(false)
+      message.error(e.response.data.message)
+    }
+  }
+  const handleCancel = (e) => {
+    console.log(e)
+    setisModalVisible(false)
+  }
 
   useEffect(() => {
     const token = localStorage.getItem("token")
@@ -31,13 +64,13 @@ export default function Navbar({ props }) {
     localStorage.clear()
     message.success("You have been successfully logged out")
     setWelcome(undefined)
-    console.log(window.location.pathname)
+
     if (window.location.pathname === "/user") window.location.reload(true)
   }
 
   return (
-    <div>
-      <header className="navbar" style={{ zIndex: "100" }}>
+    <>
+      <header className="navbar showInDesktop" style={{ zIndex: "100" }}>
         <Link to="/">
           <img
             className="navbar__title"
@@ -46,16 +79,16 @@ export default function Navbar({ props }) {
             width="150px"
           />
         </Link>
+        <Link to="/">
+          <div className="navbar_right_item">Home</div>
+        </Link>
 
-        <div className="navbar_right_item">
-          <Link to="/">Home</Link>
-        </div>
-        <div className="navbar_right_item">
-          <Link to="/categories">Categories</Link>
-        </div>
-        <div className="navbar_right_item">
-          <Link to="/tours">Tours</Link>
-        </div>
+        <Link to="/categories">
+          <div className="navbar_right_item">Categories</div>
+        </Link>
+        <Link to="/tours">
+          <div className="navbar_right_item">Tours</div>
+        </Link>
         <div className="navbar_right_item">
           <Link to="/blog">Blog</Link>
         </div>
@@ -67,42 +100,144 @@ export default function Navbar({ props }) {
           </div>
         )}
         {welcome ? (
-          <div className="navbar__item" style={{ marginLeft: "25%" }}>
-            <Link to="/user">
+          <Link to="/user">
+            <div className="navbar__item" style={{ marginLeft: "25%" }}>
               <UserOutlined />
-            </Link>
-          </div>
+            </div>
+          </Link>
         ) : (
-          <div className="navbar__item" style={{ marginLeft: "35%" }}>
-            <Button type="primary" onClick={() => history.push("/login")}>
+          <div className="navbar__item" id="navbar__item_last">
+            <Button type="primary" onClick={() => setisModalVisible(true)}>
               Login
             </Button>
           </div>
         )}
-        <div
-          className="navbar__item"
-          // style={{ marginLeft: "44%" }}
-        >
-          <Link to="/">
-            10(256)-928 256 <PhoneFilled />
-          </Link>
-        </div>
-        <div className="navbar__item">
-          <Link to="/">
+        <Link to="/">
+          <div
+            className="navbar__item"
+            // style={{ marginLeft: "44%" }}
+          >
+            10(256)-928 <PhoneFilled />
+          </div>
+        </Link>
+        <Link to="/">
+          <div className="navbar__item">
             <InstagramOutlined />
-          </Link>
-        </div>
-        <div className="navbar__item">
-          <Link to="/">
+          </div>
+        </Link>
+        <Link to="/">
+          <div className="navbar__item">
             <FacebookOutlined />
-          </Link>
-        </div>
-        <div className="navbar__item">
-          <Link to="/">
+          </div>
+        </Link>
+        <Link to="/">
+          <div className="navbar__item">
             <GooglePlusOutlined />
-          </Link>
-        </div>
+          </div>
+        </Link>
       </header>
-    </div>
+      <Menu className="toggle">
+        {/* <Header className="header"> */}
+        <header className="navbar" style={{ zIndex: "100" }}>
+          <Link to="/">
+            <img
+              className="navbar__title"
+              src="navbar.webp"
+              alt=""
+              width="150px"
+            />
+          </Link>
+          <Link to="/">
+            <div className="navbar_right_item">Home</div>
+          </Link>
+
+          <Link to="/categories">
+            <div className="navbar_right_item">Categories</div>
+          </Link>
+          <Link to="/tours">
+            <div className="navbar_right_item">Tours</div>
+          </Link>
+          <div className="navbar_right_item">
+            <Link to="/blog">Blog</Link>
+          </div>
+          {welcome !== undefined && (
+            <div className="navbar_right_item-logout">
+              <Button type="primary" onClick={logoutFn}>
+                Logout
+              </Button>
+            </div>
+          )}
+          {welcome ? (
+            <Link to="/user">
+              <div className="navbar__item ">
+                <UserOutlined />
+              </div>
+            </Link>
+          ) : (
+            <div className="navbar__item" id="navbar__item_last">
+              <Button type="primary" onClick={() => setisModalVisible(true)}>
+                Login
+              </Button>
+            </div>
+          )}
+          <Link to="/">
+            <div
+              className="navbar__item"
+              // style={{ marginLeft: "44%" }}
+            >
+              10(256)-928 <PhoneFilled />
+            </div>
+          </Link>
+          <Link to="/">
+            <div className="navbar__item">
+              <InstagramOutlined />
+            </div>
+          </Link>
+          <Link to="/">
+            <div className="navbar__item">
+              <FacebookOutlined />
+            </div>
+          </Link>
+          <Link to="/">
+            <div className="navbar__item">
+              <GooglePlusOutlined />
+            </div>
+          </Link>
+        </header>
+        {/* </Header> */}
+      </Menu>
+      {/* </Layout> */}
+
+      <Modal
+        title="login"
+        onCancel={handleCancel}
+        onOk={loginFn}
+        visible={isModalVisible}
+        className="login-modal"
+      >
+        <Input
+          placeholder="Email"
+          prefix={<UserOutlined />}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <br />
+        <br />
+        <Input.Password
+          placeholder="Password"
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <br />
+        <br />
+        <br />
+        <p>
+          Don't have an account?{" "}
+          {
+            <Link to="/register">
+              <span className="link-register">Register here</span>
+            </Link>
+          }
+        </p>
+      </Modal>
+    </>
   )
 }

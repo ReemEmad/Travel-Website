@@ -60,33 +60,21 @@ export default function Categories() {
   return (
     <>
       <Navbar />
-      <div style={{ overflow: "hidden " }} className="container">
-        <h1
-          align="center"
-          style={{ fontSize: "80px", color: "#ffffff" }}
-          className="centered"
-        >
+
+      <div className="container">
+        <h1 align="center" className="centered">
           Categories
         </h1>
         <img src={imgSrc} alt="" />
       </div>
 
       {loading ? (
-        <div
-          style={{ marginLeft: "50%", marginTop: "5%", paddingBottom: "5%" }}
-        >
+        <div className="category_grid">
           <Spin tip="loading" size="large" />
         </div>
       ) : (
         <>
-          <div
-            style={{
-              width: "100%",
-              textAlign: "center",
-              margin: "0px",
-              padding: "120px",
-            }}
-          >
+          <div className="card_container">
             <Row
               align="middle"
               gutter={0}
@@ -94,13 +82,13 @@ export default function Categories() {
             >
               {categories.map((item) => (
                 <>
-                  <Col className="gutter-row" span={8} key={item.id}>
+                  <Col className="gutter-row" span={6} key={item.id}>
                     <Link to={`/category/${item.id}`}>
                       <Card
                         // onClick={() => window.(`/category/${item.id}`)}
                         // onClick={() => filterTourByCategory(item.id)}
+                        className="card_cat"
                         hoverable
-                        style={{ width: 340 }}
                         cover={
                           <img
                             // src={item.images[0].path.replace(

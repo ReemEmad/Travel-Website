@@ -46,10 +46,20 @@ export default function SingleBlog(props) {
         </div>
       ) : (
         <>
-          <Content>
+          <Content className="content_blog">
             <Row align="center" gutter={10}>
               {data.map((blog) => (
-                <Col className="gutter-row" span={12} key={blog.id}>
+                <Col
+                  xs={24}
+                  sm={24}
+                  md={10}
+                  lg={10}
+                  xl={24}
+                  xxl={24}
+                  className="gutter-row"
+                  span={12}
+                  key={blog.id}
+                >
                   <div align="center">
                     <img src={imgSrc} alt="" />
 
@@ -73,7 +83,6 @@ export default function SingleBlog(props) {
               ))}
             </Row>
           </Content>
-          <AppFooter />
         </>
       )}
       <AppFooter />

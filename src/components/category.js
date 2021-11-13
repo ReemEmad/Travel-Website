@@ -30,10 +30,10 @@ export default function Category(props) {
   return (
     <>
       <Navbar />
-      <div style={{ overflow: "hidden " }} className="container">
+      <div className="container_single_cat">
         <h1
           align="center"
-          style={{ fontSize: "80px", color: "#ffffff" }}
+          // style={{ fontSize: "80px", color: "red" }}
           className="centered"
         >
           {toursHead} Tours
@@ -49,11 +49,11 @@ export default function Category(props) {
         </div>
       ) : (
         <>
-          <Content>
+          <Content className="content_card">
             {/* <h1 style={{ fontFamily: "Helvetica" }} align="middle">
               {toursHead} Tours
             </h1> */}
-            <Row align="left" gutter={8} style={{ marginTop: "2%" }}>
+            <Row align="left" gutter={8} style={{ marginTop: "5%" }}>
               {data.map((item) => (
                 <Col
                   offset="1"
@@ -61,6 +61,11 @@ export default function Category(props) {
                   span={8}
                   key={item.id}
                   style={{ marginBottom: "20px" }}
+                  xs={24}
+                  sm={10}
+                  md={18}
+                  lg={18}
+                  xl={9}
                 >
                   <Link to={`/tour/${item.id}`}>
                     <img
@@ -70,8 +75,7 @@ export default function Category(props) {
                       //   "127.0.0.1:8000",
                       //   "ec2-18-188-18-65.us-east-2.compute.amazonaws.com/TravelsAgency/public",
                       // )}
-                      width="380px"
-                      height="250px"
+
                       alt=""
                     />
                   </Link>
@@ -102,11 +106,13 @@ export default function Category(props) {
                   <p style={{ fontSize: "17px", width: "75%" }}>
                     Discover the delights of South America in Argentina, Chile,
                     and Bolivia on a tailor-made amazing tour. You will
-                    experience touring Buenos Aires,
+                    experience touring Buenos Aires.
                   </p>
-                  <Rate value={"4"} />
+
                   <ClockCircleOutlined />
-                  <span>{item.duration} days</span>
+                  <span>&nbsp; {item.duration} days</span>
+                  <br />
+                  <Rate value={"4"} />
                 </Col>
               ))}
             </Row>

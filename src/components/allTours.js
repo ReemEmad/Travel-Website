@@ -21,6 +21,7 @@ import { getData, filterTour } from "../Apis/toursApis"
 import { categoriesApi } from "../Apis/homeApis"
 import Navbar from "./navbar2"
 import { Link } from "react-router-dom"
+import AppFooter from "./AppFooter"
 
 export default function AllTours() {
   const { Text } = Typography
@@ -136,16 +137,6 @@ export default function AllTours() {
       </div>
 
       <Layout>
-        {/* <Header
-          style={{
-            background: "none",
-            marginTop: "100px",
-            marginBottom: "50px",
-            textAlign: "center",
-          }}
-        >
-          <h1 style={{ fontSize: "37px" }}>Tours</h1>
-        </Header> */}
         {loading ? (
           <div
             style={{ marginTop: "5%", marginLeft: "50%", paddingBottom: "5%" }}
@@ -153,23 +144,8 @@ export default function AllTours() {
             <Spin tip="loading" size="large" />
           </div>
         ) : (
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "flex-start",
-            }}
-          >
-            <div
-              style={{
-                marginTop: "50px",
-                width: "60%",
-                padding: "25px",
-                background: "white",
-                marginLeft: "200px",
-                borderRadius: "10px",
-              }}
-            >
+          <div className="tours_container">
+            <div className="filterRes">
               <h3>Filter Result</h3>
               <Select
                 defaultValue="Country"
@@ -193,6 +169,7 @@ export default function AllTours() {
                 <DatePicker onChange={onChange} />
               </Space>
               <Slider
+                style={{ width: "90%" }}
                 range
                 marks={marks}
                 defaultValue={[20, 75]}
@@ -211,29 +188,23 @@ export default function AllTours() {
                 Confirm
               </Button>
             </div>
-            <Content style={{ padding: "50px", margin: "0px 50px" }}>
+            <Content className="content_style_tours">
               <Row align="middle" gutter={8}>
                 {tours.map((item) => (
                   <Col
                     className="gutter-row"
-                    span={11}
+                    // span={9}
+                    xs={15}
+                    sm={10}
+                    md={18}
+                    lg={18}
+                    xl={9}
                     key={item.id}
                     style={{ marginBottom: "20px" }}
                   >
                     <Link to={`/tour/${item.id}`}>
-                      <img
-                        src={imgSrc1}
-                        // onClick={() => console.log("sss")}
-                        // src={item.images[0].path.replace(
-                        //   "127.0.0.1:8000",
-                        //   "ec2-18-188-18-65.us-east-2.compute.amazonaws.com/TravelsAgency/public",
-                        // )}
-                        width="380px"
-                        height="250px"
-                        alt=""
-                      />
+                      <img src={imgSrc1} width="350px" height="220px" alt="" />
                     </Link>
-
                     <div
                       style={{
                         fontWeight: "bold",
@@ -259,14 +230,16 @@ export default function AllTours() {
                     >
                       {item.name}
                     </h2>
-                    <p style={{ fontSize: "17px", width: "75%" }}>
+                    <p className="p_card">
                       Discover the delights of South America in Argentina,
                       Chile, and Bolivia on a tailor-made amazing tour. You will
                       experience touring Buenos Aires,
                     </p>
-                    <Rate value={"4"} />
+
                     <ClockCircleOutlined />
-                    <span> {"         " + item.duration} days</span>
+                    <span> &nbsp;{item.duration} days</span>
+                    <br />
+                    <Rate value={"4"} />
                   </Col>
                 ))}
               </Row>
@@ -275,26 +248,7 @@ export default function AllTours() {
         )}
       </Layout>
 
-      <div className="footer">
-        <div>
-          <img src="xfooter.webp" alt=""></img>
-          <p>
-            5th flora, 700/D kings road, green lane New York-1782 +10 367 826
-            2567 contact@carpenter.com
-          </p>
-        </div>
-        <div>
-          <h2>Company</h2>
-          <p>Pricing</p>
-          <p>About</p>
-          <p>Gallery</p>
-          <p>Contact</p>
-        </div>
-        <p style={{ alignSelf: "start" }}>
-          {" "}
-          Copyright ©2021 All rights reserved
-        </p>
-      </div>
+      <AppFooter />
     </>
   )
 }

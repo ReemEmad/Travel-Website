@@ -20,7 +20,7 @@ export default function AppFooter() {
         <br />
         <a href="/Blog">Blog</a>
       </div>
-      <p style={{ alignSelf: "start" }}> Copyright ©2021 All rights reserved</p>
+      <p className="footer_links_p"> Copyright ©2021 All rights reserved</p>
     </div>
   )
 }

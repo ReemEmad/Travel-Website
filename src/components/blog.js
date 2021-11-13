@@ -22,9 +22,10 @@ export default function Blog() {
 
   const style = { background: "", paddingLeft: "280px", textAlign: "right" }
   // const style1 = { background: "", padding: "8px 0", textAlign: "center" }
+
   return (
     <>
-      <div style={{ overflow: "hidden " }} className="container">
+      <div className="container">
         <h1
           align="center"
           style={{ fontSize: "80px", color: "#ffffff" }}
@@ -34,10 +35,10 @@ export default function Blog() {
         </h1>
         <img src={imgSrc} alt="" />
       </div>
-      <section style={{ width: "60% ", margin: "80px 20px 70px 200px" }}>
+      <section className="content_blog">
         <Row align="middle" gutter={10}>
           {data.map((blog) => (
-            <Col className="gutter-row" span={12} key={blog.id}>
+            <Col xs={24} className="gutter-row" span={12} key={blog.id}>
               <>
                 <Link to={`/blog/${blog.id}`}>
                   <img src={imgSrc1} width="450px" alt="" />

@@ -15,6 +15,7 @@ export default function Login() {
       message.error("please enter your email and password")
       return
     }
+
     try {
       setLoading(true)
       let Fdata = new FormData()
@@ -30,6 +31,7 @@ export default function Login() {
       message.success("You've logged in successfully")
     } catch (eror) {
       setLoading(false)
+      console.log({ eror })
       message.error("email or password is invalid")
     }
   }

@@ -34,21 +34,20 @@ export default function Register() {
       Fdata.append("phone", phone)
       Fdata.append("password_confirmation", passwordConfirm)
       let { data } = await register(Fdata)
-      //   localStorage.setItem("token", data.token)
       setLoading(false)
       console.log(data)
       message.success("You've been registereed successfully")
       history.push("/")
-    } catch (eror) {
+    } catch (e) {
       setLoading(false)
-      message.error("Please review your data")
+      message.error(e.response.data.message)
     }
   }
 
   return (
-    <div className="register-container">
-      <div className="center-space">
-        <h1>Register</h1>
+    <section className="resgiter">
+      <div className="register-container">
+        <h1>Register Now</h1>
         <Input
           placeholder="Name"
           prefix={<UserOutlined />}
@@ -89,17 +88,17 @@ export default function Register() {
         <Button type="primary" onClick={submitFn} loading={loading}>
           Submit
         </Button>
+        <br />
+        <br />
 
-        <br />
-        <br />
-        <p>
+        {/* <p>
           Already registered?{" "}
           <Link to="/login">
             <span>login</span>
           </Link>
           <p />
-        </p>
+        </p> */}
       </div>
-    </div>
+    </section>
   )
 }
