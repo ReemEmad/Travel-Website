@@ -19,6 +19,7 @@ export default function Navbar({ props }) {
   const [email, setEmail] = useState()
   const [password, setPassword] = useState()
   const [loading, setLoading] = useState(false)
+  const [isMenuOpen, setisMenuOpen] = useState(false)
 
   const { Header, Content, Sider } = Layout
 
@@ -68,6 +69,16 @@ export default function Navbar({ props }) {
     if (window.location.pathname === "/user") window.location.reload(true)
   }
 
+  const handleChange = (state) => {
+    //  setisMenuOpen()
+    if (state.isOpen === false) {
+      setisMenuOpen(false)
+    }
+  }
+  const handleClose = (state) => {
+    setisMenuOpen(false)
+  }
+
   return (
     <>
       <header className="navbar showInDesktop" style={{ zIndex: "100" }}>
@@ -107,7 +118,13 @@ export default function Navbar({ props }) {
           </Link>
         ) : (
           <div className="navbar__item" id="navbar__item_last">
-            <Button type="primary" onClick={() => setisModalVisible(true)}>
+            <Button
+              type="primary"
+              onClick={() => {
+                setisMenuOpen(false)
+                setisModalVisible(true)
+              }}
+            >
               Login
             </Button>
           </div>
@@ -136,7 +153,12 @@ export default function Navbar({ props }) {
           </div>
         </Link>
       </header>
-      <Menu className="toggle">
+      <Menu
+        className="toggle"
+        onStateChange={handleChange}
+        isOpen={isMenuOpen}
+        // onClose={handleClose}
+      >
         {/* <Header className="header"> */}
         <header className="navbar" style={{ zIndex: "100" }}>
           <Link to="/">
@@ -175,7 +197,14 @@ export default function Navbar({ props }) {
             </Link>
           ) : (
             <div className="navbar__item" id="navbar__item_last">
-              <Button type="primary" onClick={() => setisModalVisible(true)}>
+              <Button
+                type="primary"
+                onClick={() => {
+                  setisMenuOpen(false)
+                  setisModalVisible(true)
+                  // handleChange()
+                }}
+              >
                 Login
               </Button>
             </div>
@@ -209,6 +238,7 @@ export default function Navbar({ props }) {
       {/* </Layout> */}
 
       <Modal
+        zIndex={2000}
         title="login"
         onCancel={handleCancel}
         onOk={loginFn}

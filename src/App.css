@@ -409,6 +409,9 @@ Spin {
   .places button {
     padding: 6px 15px;
   }
+  .places_grid {
+    margin-left: -45px;
+  }
 }
 
 .testimonials {
@@ -428,6 +431,9 @@ Spin {
   .testimonials {
     padding: 40px;
     text-align: center;
+  }
+  .testimonials p {
+    width: 295px;
   }
 }
 

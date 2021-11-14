@@ -15,7 +15,6 @@ import {
 import imgSrc from "./banner.png.webp"
 import { Link } from "react-router-dom"
 import {
-  DownOutlined,
   ArrowRightOutlined,
   ArrowLeftOutlined,
   ClockCircleOutlined,
@@ -24,15 +23,24 @@ import {
 import { toursApi, searchApi, categoriesApi } from "./Apis/homeApis"
 import AppFooter from "./components/AppFooter"
 import AppModal from "./components/AppModal"
+import { getBlogsApi } from "./Apis/blogApis"
 
 export default function Home() {
   const [tours, setTours] = useState([])
   const [categories, setCategories] = useState([])
   const [searchText, setsearchText] = useState("")
-  const [date, setDate] = useState("")
   const [loading, setloading] = useState(false)
   const [loadingAll, setLoadingAll] = useState(false)
   const [isModalVisible, setisModalVisible] = useState(true)
+  const [date, setDate] = useState("")
+
+  const [data, setdata] = useState([])
+
+  let getBlogs = async () => {
+    let { data } = await getBlogsApi()
+    console.log(data)
+    setdata(data)
+  }
 
   const handleOk = () => {
     setisModalVisible(false)
@@ -53,6 +61,7 @@ export default function Home() {
 
   useEffect(() => {
     getAllData()
+    getBlogs()
   }, [])
 
   const { Meta } = Card
@@ -337,42 +346,17 @@ export default function Home() {
               prevArrow={<ArrowLeftOutlined />}
               nextArrow={<ArrowRightOutlined />}
             >
-              <div style={contentStyle1}>
-                <img
-                  src="xauthor.webp"
-                  style={{ margin: "10px auto" }}
-                  alt=""
-                ></img>
-                <p style={{ margin: "auto" }}>
-                  "Working in conjunction with humanitarian aid agencies, we
-                  have supported programmes to help alleviate human suffering."
-                </p>
-                <p style={{ margin: "auto" }}>-Micky Mouse</p>
-              </div>
-              <div style={contentStyle1}>
-                <img
-                  src="xauthor.webp"
-                  style={{ margin: "10px auto" }}
-                  alt=""
-                ></img>
-                <p style={{ margin: "auto" }}>
-                  "Working in conjunction with humanitarian aid agencies, we
-                  have supported programmes to help alleviate human suffering."
-                </p>
-                <p style={{ margin: "auto" }}>-Jerry Mouse</p>
-              </div>
-              <div style={contentStyle1}>
-                <img
-                  src="xauthor.webp"
-                  style={{ margin: "10px auto" }}
-                  alt=""
-                ></img>
-                <p style={{ margin: "auto" }}>
-                  "Working in conjunction with humanitarian aid agencies, we
-                  have supported programs to help alleviate human suffering."
-                </p>
-                <p style={{ margin: "auto" }}>-David Mouse</p>
-              </div>
+              {data.map((blog) => (
+                <div style={contentStyle1}>
+                  <img
+                    src="xauthor.webp"
+                    style={{ margin: "10px auto" }}
+                    alt=""
+                  ></img>
+                  <h1>{blog.title}</h1>
+                  <p style={{ margin: "auto" }}>{blog.body}</p>
+                </div>
+              ))}
             </Carousel>
           </div>
 

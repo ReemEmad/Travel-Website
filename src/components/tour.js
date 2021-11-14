@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from "react"
+import React, { useEffect, useState, useCallback, useContext } from "react"
 import {
   Divider,
   Layout,
@@ -37,9 +37,11 @@ import imgSrc1 from "../nile.jpg"
 import { getSingleTour, reserveTour, getPayment } from "../Apis/toursApis"
 import AppFooter from "./AppFooter"
 import { useHistory } from "react-router"
-import { Link } from "react-router-dom"
+import { GuestUserContext } from "../Context/GuestUserContext"
 
 export default function Tour(props) {
+  const { isDataFilled, setisDataFilled } = useContext(GuestUserContext)
+
   const { RangePicker } = DatePicker
   const history = useHistory()
   const [loading, setloading] = useState(false)
@@ -56,6 +58,7 @@ export default function Tour(props) {
   const [isModalVisible, setIsModalVisible] = useState(false)
   const [invoiceId, setInvoiceId] = useState()
   const [invoiceURL, setInvoiceURL] = useState()
+
   // const [numberOfChildren, setnumberOfChildren] = useState(1)
   // const [startData, setstartDate] = useState()
   // const [endData, setendDate] = useState()
@@ -116,6 +119,7 @@ export default function Tour(props) {
     } catch (error) {
       if (error.response.status === 401) {
         message.error("please register first")
+        setisDataFilled(true)
         history.push("/register")
       }
     }

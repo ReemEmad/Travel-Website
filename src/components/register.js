@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useContext } from "react"
 import { Button, Input, message } from "antd"
 import { UserOutlined, MailOutlined, NumberOutlined } from "@ant-design/icons"
 import { register } from "../Apis/userApis"
 import { Link } from "react-router-dom"
 import { useHistory } from "react-router"
+import { GuestUserContext } from "../Context/GuestUserContext"
 
 export default function Register() {
   const history = useHistory()
@@ -13,6 +14,8 @@ export default function Register() {
   const [password, setPassword] = useState()
   const [passwordConfirm, setPasswordConfirm] = useState()
   const [loading, setLoading] = useState(false)
+
+  const { isDataFilled } = useContext(GuestUserContext)
 
   const submitFn = async () => {
     if (
@@ -37,10 +40,15 @@ export default function Register() {
       setLoading(false)
       console.log(data)
       message.success("You've been registereed successfully")
-      history.push("/")
+      if (isDataFilled) {
+        history.goBack()
+      } else {
+        history.push("/")
+      }
     } catch (e) {
       setLoading(false)
-      message.error(e.response.data.message)
+      console.log(e.response.data.errors[0])
+      message.error(e.response.data.errors[0])
     }
   }
 
