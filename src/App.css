@@ -797,6 +797,10 @@ a {
     padding: 15px;
   }
 
+  .navbar_right_item-logout {
+    margin-left: 0.5%;
+  }
+
   .content_style_tours img {
     width: 150px;
     height: 100px;
@@ -1001,6 +1005,17 @@ a {
   margin-left: 45%;
 }
 
+.login-modal {
+  z-index: 19444444440;
+}
+
+.userprofilecontainer {
+  padding: 155px;
+}
+.user_trips {
+  padding: 48px;
+}
+
 @media screen and (max-width: 770px) {
   #navbar__item_last {
     margin-left: 0%;
@@ -1019,8 +1034,12 @@ a {
   #navbar__item_last {
     margin-left: 3%;
   }
-}
 
-.login-modal {
-  z-index: 19444444440;
+  .userprofilecontainer {
+    padding: 250px 20px;
+  }
+
+  .user_trips {
+    padding: 50px 0px;
+  }
 }

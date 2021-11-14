@@ -40,6 +40,9 @@ export default function Register() {
       setLoading(false)
       console.log(data)
       message.success("You've been registereed successfully")
+      localStorage.setItem("token", data.token)
+      localStorage.setItem("name", data.name)
+      localStorage.setItem("email", data.email)
       if (isDataFilled) {
         history.goBack()
       } else {

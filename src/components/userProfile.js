@@ -16,6 +16,7 @@ function UserProfile() {
 
   const getReserved = async () => {
     let {data} = await getReservedTours(localStorage.getItem("token"))
+    console.log(data)
     console.log(data.[`reserved tours`])
     setreserved(data.[`reserved tours`])
   }
@@ -31,7 +32,7 @@ function UserProfile() {
   return (
     <>
       <Navbar />
-      <div style={{ paddingTop: "140px" }}>
+      <div className="userprofilecontainer">
         <Tabs defaultActiveKey="1" tabPosition="left"  height="800">
           <TabPane tab={"User Information"} key={1} className="tab-style">
             <h3>Name: </h3>
@@ -44,7 +45,7 @@ function UserProfile() {
           <TabPane tab={"Reserved Trips"} key={2} className="tab-style">
           {/* <Content> */}
               <Row align="middle" gutter={8} style={{width:"200%"}}>
-                {reserved?.map((item) => (
+                {reserved.length > 0 ? reserved?.map((item) => (
                   <Col
                     className="gutter-row"
                     span={10}
@@ -76,7 +77,7 @@ function UserProfile() {
                     <span> {"         " + item.tour.duration} days</span> */}
                     </div>
                   </Col>
-                ))}
+                )):<p className="user_trips">No reserved trips yet.</p>}
               </Row>
             {/* </Content> */}
           </TabPane>

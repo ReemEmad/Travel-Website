@@ -25,7 +25,11 @@ export default function Navbar({ props }) {
 
   const loginFn = async () => {
     if (email === "" || password === "") {
-      message.error("please enter your email and password")
+      message.error({
+        content: "please enter your email and password",
+        style: { zIndex: 2500 },
+      })
+
       return
     }
     try {
@@ -41,10 +45,16 @@ export default function Navbar({ props }) {
       setLoading(false)
       setWelcome("haha")
       setisModalVisible(false)
-      message.success("You've logged in successfully")
+      message.success({
+        content: "successful login",
+        style: { zIndex: 2500 },
+      })
     } catch (e) {
       setLoading(false)
-      message.error(e.response.data.message)
+      message.error({
+        content: e.response.data.message,
+        style: { zIndex: 250000000, marginTop: "90vh" },
+      })
     }
   }
   const handleCancel = (e) => {
@@ -238,7 +248,7 @@ export default function Navbar({ props }) {
       {/* </Layout> */}
 
       <Modal
-        zIndex={2000}
+        zIndex={1800}
         title="login"
         onCancel={handleCancel}
         onOk={loginFn}
