@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react"
 import imgSrc from "../banner.png.webp"
 import imgSrc1 from "../x3.webp"
-import { Row, Col, Divider, Button } from "antd"
-import { UserOutlined } from "@ant-design/icons"
+import { Row, Col } from "antd"
+
 import { getBlogsApi } from "../Apis/blogApis"
 import { Link } from "react-router-dom"
 import AppFooter from "./AppFooter"
@@ -19,9 +19,6 @@ export default function Blog() {
   useEffect(() => {
     getBlogs()
   }, [])
-
-  const style = { background: "", paddingLeft: "280px", textAlign: "right" }
-  // const style1 = { background: "", padding: "8px 0", textAlign: "center" }
 
   return (
     <>

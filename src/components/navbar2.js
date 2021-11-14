@@ -53,7 +53,6 @@ export default function Navbar({ props }) {
       setLoading(false)
       message.error({
         content: e.response.data.message,
-        style: { zIndex: 250000000, marginTop: "90vh" },
       })
     }
   }

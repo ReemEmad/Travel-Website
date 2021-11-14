@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react"
 import { Button, Row, Col, Rate, Layout, Spin } from "antd"
 import { getSingleBlogApi } from "../Apis/blogApis"
-import imgSrc from "../x3.webp"
+import imgSrc11 from "../x3.webp"
+import imgSrc from "../banner.png.webp"
+import imgSrc12 from "../pexels-alesia-kozik-6016498.jpg"
 import AppFooter from "./AppFooter"
 import { Link } from "react-router-dom"
 import Navbar from "./navbar2"
@@ -61,7 +63,7 @@ export default function SingleBlog(props) {
                   key={blog.id}
                 >
                   <div align="center">
-                    <img src={imgSrc} alt="" />
+                    <img src={imgSrc11} alt="" />
 
                     <div
                       style={{

@@ -101,14 +101,6 @@ export default function Register() {
         </Button>
         <br />
         <br />
-
-        {/* <p>
-          Already registered?{" "}
-          <Link to="/login">
-            <span>login</span>
-          </Link>
-          <p />
-        </p> */}
       </div>
     </section>
   )

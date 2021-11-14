@@ -10,7 +10,7 @@ const PrivateRoute = ({ component: Component, handleChildFunc, ...rest }) => {
         user !== null ? (
           <Component {...props} user={user} />
         ) : (
-          <Redirect to="/login" />
+          <Redirect to="/" />
         )
       }
     />

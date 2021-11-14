@@ -340,7 +340,6 @@ export default function Home() {
 
           <div className="testimonials">
             <Carousel
-              // style={{ marginLeft: "35%" }}
               autoplay
               dots={false}
               prevArrow={<ArrowLeftOutlined />}
@@ -363,35 +362,6 @@ export default function Home() {
           <AppFooter />
         </div>
       </Spin>
-      <AppModal
-        title="login"
-        handleCancel={handleCancel}
-        handleOk={handleOk}
-        visible={isModalVisible}
-      >
-        {/* <Input
-      placeholder="Email"
-      prefix={<UserOutlined />}
-      onChange={(e) => setEmail(e.target.value)}
-    />
-    <br />
-    <br />
-
-    <Input.Password
-      placeholder="Password"
-      onChange={(e) => setPassword(e.target.value)}
-    />
-    <br />
-    <br />
-    <br />
-    <Button type="primary" onClick={loginFn} loading={loading}>
-      Submit
-    </Button> */}
-        <p>hahaha</p>
-        <p>hahaha</p>
-        <p>hahaha</p>
-        <p>hahaha</p>
-      </AppModal>
     </>
   )
 }

@@ -974,6 +974,10 @@ a {
   margin: 80px 20px 70px 200px;
 }
 
+.ant-message {
+  z-index: 2000;
+}
+
 @media screen and (max-width: 600px) {
   .content_blog {
     width: 100%;
@@ -1042,4 +1046,8 @@ a {
   .user_trips {
     padding: 50px 0px;
   }
+}
+
+.zindex-message {
+  z-index: 2000 !important;
 }
