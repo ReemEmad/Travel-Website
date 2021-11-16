@@ -203,7 +203,8 @@ export default function Tour(props) {
         <p>Invoice ID: {invoiceId}</p>
 
         <a target="_blank" href={invoiceURL} rel="noreferrer">
-          <h3>Click through this link to proceed to payment</h3>
+          {/* <h3>Click through this link to proceed to payment</h3> */}
+          <Button type="primary">Pay Now</Button>
         </a>
       </Modal>
 

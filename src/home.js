@@ -261,7 +261,7 @@ export default function Home() {
               randomised booth anim 8-bit hella wolf moon beard words.
             </p>
             <div className="places_grid">
-              <Row gutter={30} style={{ marginLeft: "30px" }}>
+              <Row gutter={30} style={{ marginLeft: "45px" }}>
                 {tours.map((tour) => (
                   <Col className="gutter-row" span={8} key={tour.id}>
                     <div style={style}>
@@ -274,8 +274,8 @@ export default function Home() {
                             <Link to={`/tour/${tour.id}`}>
                               <img
                                 src={imgSrc}
-                                width="350"
-                                height="200"
+                                width="100%"
+                                height="250"
                                 // src={tour.images[0].path}
                                 //   .replace(
                                 //   "127.0.0.1:8000",
@@ -284,16 +284,9 @@ export default function Home() {
                                 alt=""
                               />
                             </Link>
-                            <div
-                              style={{
-                                fontWeight: "bold",
-                                position: "absolute",
-                                top: "25px",
-                                left: "20px",
-                                // background: "#f7f8f8f8",
-                              }}
-                            >
+                            <div>
                               <Button
+                                id="tour_price"
                                 style={{
                                   background: "#1EC6B6",
                                   border: "none",
