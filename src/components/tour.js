@@ -117,6 +117,7 @@ export default function Tour(props) {
       setInvoiceId(result.data.InvoiceId)
       setInvoiceURL(result.data.InvoiceURL)
     } catch (error) {
+      message.error(error.response.data)
       if (error.response.status === 401) {
         message.error("please register first")
         setisDataFilled(true)
