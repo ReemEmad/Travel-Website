@@ -44,11 +44,17 @@ function UserProfile() {
           </TabPane>
           <TabPane tab={"Reserved Trips"} key={2} className="tab-style">
           {/* <Content> */}
-              <Row align="middle" gutter={8} style={{width:"200%"}}>
+              <Row align="middle" gutter={8}>
                 {reserved.length > 0 ? reserved?.map((item) => (
                   <Col
                     className="gutter-row"
-                    span={10}
+                    xs={24}
+                    sm={24}
+                    md={15}
+                    lg={15}
+                    xl={15}
+                    xxl={16}
+                    span={12}
                     // width={90}
                     key={item.tour.id}
                     style={{marginLeft:"30px"}}
@@ -57,8 +63,7 @@ function UserProfile() {
                     <Link to={`/tour/${item.tour.id}`}>
                       <img
                         src={imgSrc1}
-                        width="300px"
-                        height="200px"
+                       className="img_card"
                         alt=""
                       />
                     </Link>
@@ -68,7 +73,7 @@ function UserProfile() {
                     >
                       {item.tour.name}
                     </h2>
-                    <p style={{ fontSize: "17px", width: "75%" }}>
+                    <p style={{ fontSize: "16px" }} className="p_user">
                       Discover the delights of South America in Argentina,
                       Chile, and Bolivia on a tailor-made amazing tour. You will
                       experience touring Buenos Aires,
