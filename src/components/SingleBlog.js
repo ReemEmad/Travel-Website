@@ -48,40 +48,42 @@ export default function SingleBlog(props) {
         </div>
       ) : (
         <>
-          <Content className="content_blog">
+          <Content>
             <Row align="center" gutter={10}>
               {data.map((blog) => (
-                <Col
-                  xs={24}
-                  sm={24}
-                  md={10}
-                  lg={10}
-                  xl={24}
-                  xxl={24}
-                  className="gutter-row"
-                  span={12}
-                  key={blog.id}
-                >
-                  <div align="center">
-                    <img src={imgSrc11} alt="" />
+                <div className="content_blog_single">
+                  <Col
+                    xs={24}
+                    sm={24}
+                    md={10}
+                    lg={10}
+                    xl={24}
+                    xxl={24}
+                    className="gutter-row"
+                    span={12}
+                    key={blog.id}
+                  >
+                    <div align="center">
+                      <img src={imgSrc11} alt="" />
 
-                    <div
-                      style={{
-                        fontWeight: "bold",
-                        display: "flex",
-                        justifyItems: "space-between",
-                        alignItems: "center",
-                      }}
-                    >
-                      {"        "}
-                      {/* <div> Nourhan Magdy</div> */}
-                      {/* <div style={style}>21 JUL</div> */}
+                      <div
+                        style={{
+                          fontWeight: "bold",
+                          display: "flex",
+                          justifyItems: "space-between",
+                          alignItems: "center",
+                        }}
+                      >
+                        {"        "}
+                        {/* <div> Nourhan Magdy</div> */}
+                        {/* <div style={style}>21 JUL</div> */}
+                      </div>
+                      <h1 style={{ marginTop: "10px" }}>{blog.title}</h1>
+                      <p style={{ fontSize: "17px" }}>{blog.body}</p>
+                      {/* <Button style={{ marginBottom: "30px" }}>Read More</Button> */}
                     </div>
-                    <h1 style={{ marginTop: "10px" }}>{blog.title}</h1>
-                    <p style={{ fontSize: "17px" }}>{blog.body}</p>
-                    {/* <Button style={{ marginBottom: "30px" }}>Read More</Button> */}
-                  </div>
-                </Col>
+                  </Col>
+                </div>
               ))}
             </Row>
           </Content>
