@@ -42,7 +42,6 @@ import { GuestUserContext } from "../Context/GuestUserContext"
 export default function Tour(props) {
   const { isDataFilled, setisDataFilled } = useContext(GuestUserContext)
 
-  const { RangePicker } = DatePicker
   const history = useHistory()
   const [loading, setloading] = useState(false)
   const [form] = Form.useForm()
@@ -59,12 +58,8 @@ export default function Tour(props) {
   const [invoiceId, setInvoiceId] = useState()
   const [invoiceURL, setInvoiceURL] = useState()
 
-  // const [numberOfChildren, setnumberOfChildren] = useState(1)
-  // const [startData, setstartDate] = useState()
-  // const [endData, setendDate] = useState()
-
   const [shedule, setshedule] = useState(Date)
-  const { Header, Sider, Content } = Layout
+  const { Header, Content } = Layout
   const { TabPane } = Tabs
   const { Panel } = Collapse
 
@@ -82,7 +77,6 @@ export default function Tour(props) {
 
   let getPaymentMethod = async () => {
     let { data } = await getPayment()
-    console.log(data.paymentMethods)
     setpaymentMethods(data.paymentMethods)
   }
 
@@ -204,7 +198,6 @@ export default function Tour(props) {
         <p>Invoice ID: {invoiceId}</p>
 
         <a target="_blank" href={invoiceURL} rel="noreferrer">
-          {/* <h3>Click through this link to proceed to payment</h3> */}
           <Button type="primary">Pay Now</Button>
         </a>
       </Modal>
@@ -212,7 +205,7 @@ export default function Tour(props) {
       <div style={{ width: "100%" }}>
         <Layout>
           <Header>
-            <div>
+            <div className="tour_single_head">
               <img src={imgSrc} alt="" />
             </div>
           </Header>
@@ -450,13 +443,6 @@ export default function Tour(props) {
                   </div>
                 </TabPane> */}
                     </Tabs>
-                    <Button
-                      style={{ margin: "20px 0 50px 95px" }}
-                      type="primary"
-                      shape="round"
-                    >
-                      Enquire Now
-                    </Button>
                   </Content>
                 </Col>
               )}

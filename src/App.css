@@ -536,9 +536,9 @@ Spin {
   width: 45%;
 }
 
-.ant-tabs {
+/* .ant-tabs {
   margin-left: 100px;
-}
+} */
 
 .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
   color: #ff4a52;
@@ -929,10 +929,14 @@ a {
     min-width: 200px !important;
     max-width: 200px !important;
     margin-top: 800px;
-    /* margin-left: -600px; */
+  }
+  /* margin-left: -600px; */
 
-    /* position: fixed; */
-    /* top: 50px; */
+  /* position: fixed; */
+  /* top: 50px; */
+
+  .tour_single_head > img {
+    height: 25vh;
   }
 
   .ant-layout.ant-layout-has-sider > .ant-layout,

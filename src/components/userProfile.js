@@ -5,7 +5,7 @@ import { getReservedTours } from "../Apis/userApis"
 import Item from "antd/lib/list/Item"
 import imgSrc1 from "../pexels-alesia-kozik-6016498.jpg"
 import { Link } from "react-router-dom"
-import { ClockCircleOutlined } from "@ant-design/icons"
+import { Modal} from 'antd';
 
 const { TabPane } = Tabs
 const { Header, Footer, Sider, Content } = Layout
@@ -13,6 +13,32 @@ function UserProfile() {
   const [name, setname] = useState("")
   const [email, setemail] = useState("")
   const [reserved, setreserved] = useState([])
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [modalData, setmodalData] = useState({})
+
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleOk = () => {
+    setIsModalVisible(false);
+    setmodalData({})
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+    setmodalData({})
+  };
+
+  const handleGetModalData = (item) => {
+    // console.log(item)
+      const found = reserved.find(i=>i.tour.id===item.tour.id)
+      setmodalData(found)    
+  }
+
+  useEffect(() => {
+    if(Object.keys(modalData).length!==0)setIsModalVisible(true)
+  }, [modalData])
 
   const getReserved = async () => {
     let {data} = await getReservedTours(localStorage.getItem("token"))
@@ -59,15 +85,12 @@ function UserProfile() {
                     key={item.tour.id}
                     style={{marginLeft:"30px"}}
                   >
-                    <div >
-                    <Link to={`/tour/${item.tour.id}`}>
+                    <div>
                       <img
                         src={imgSrc1}
                        className="img_card"
                         alt=""
                       />
-                    </Link>
-
                     <h2
                       style={{ textTransform: "uppercase", marginTop: "10px" }}
                     >
@@ -78,9 +101,10 @@ function UserProfile() {
                       Chile, and Bolivia on a tailor-made amazing tour. You will
                       experience touring Buenos Aires,
                     </p>
-                    {/* <ClockCircleOutlined />
-                    <span> {"         " + item.tour.duration} days</span> */}
                     </div>
+                    <Button  onClick={()=>handleGetModalData(item)}>Show Details</Button>
+                    <br></br>
+                    <br></br>
                   </Col>
                 )):<p className="user_trips">No reserved trips yet.</p>}
               </Row>
@@ -108,6 +132,20 @@ function UserProfile() {
           Copyright ©2021 All rights reserved
         </p>
       </div>
+      <Modal title="Tour Details" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+        <p><strong>Name:</strong>  {modalData.name}</p>
+        <p><strong>Email:</strong> {modalData.email}</p>
+        <p><strong>Phone Number:</strong> {modalData.mobile}</p>
+        <p><strong>Age: </strong>{modalData.age}</p>
+        <p><strong>Nationality:</strong> {modalData.nationality}</p>
+        <p><strong>Number of people:</strong> {modalData.number_of_people}</p>
+        <p><strong>Number of single rooms:</strong> {modalData.number_of_single}</p>
+        <p><strong>Number of single double rooms:</strong> {modalData.number_of_double}</p>
+        <p><strong>Number of single triple rooms:</strong> {modalData.number_of_triple}</p>
+        <p><strong>Payment method:</strong> {modalData.payment_method}</p>
+        <p><strong>Total cost:</strong> {modalData.total}</p>
+        <p><strong>Aditional notes:</strong> {modalData.note}</p>
+      </Modal>
     </>
   )
 }
