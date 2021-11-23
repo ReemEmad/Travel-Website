@@ -51,6 +51,8 @@ export default function Tour(props) {
   const [tourDuration, settourDuration] = useState(0)
   const [arrdays, setarrdays] = useState([])
   const [numberOfAdults, setnumberOfAdults] = useState(0)
+  const [numberOfChildren, setnumberOfChildren] = useState(0)
+  const [numberOfInfants, setnumberOfInfants] = useState(0)
   const [numberOfSingle, setnumberOfSingle] = useState(0)
   const [numberOfDouble, setnumberOfDouble] = useState(0)
   const [numberOfTriple, setnumberOfTriple] = useState(0)
@@ -92,6 +94,8 @@ export default function Tour(props) {
     data.append("nationality", nationality)
     data.append("mobile", mobile)
     data.append("number_of_people", numberOfAdults)
+    data.append("number_of_children", numberOfChildren)
+    data.append("number_of_infants", numberOfInfants)
     data.append("note", note)
     data.append("payment_method_id", payment_method_id)
     data.append("tour_id", props.match.params.id)
@@ -542,6 +546,76 @@ export default function Tour(props) {
                             style={{ fontSize: "20px" }}
                             onClick={() =>
                               setnumberOfAdults((prev) => prev + 1)
+                            }
+                          />{" "}
+                        </span>
+                      </div>
+                    </Form.Item>
+                    <Form.Item
+                      label="Number Of Children"
+                      name="number_of_children"
+                      required
+                    >
+                      <div className="number-input">
+                        <span>
+                          {" "}
+                          <MinusCircleOutlined
+                            size="large"
+                            style={{ fontSize: "20px" }}
+                            onClick={() =>
+                              setnumberOfInfants((prev) => {
+                                if (prev === 0) {
+                                  return 0
+                                } else {
+                                  return (prev -= 1)
+                                }
+                              })
+                            }
+                          />{" "}
+                        </span>
+                        <span>{numberOfChildren}</span>
+                        <span>
+                          {" "}
+                          <PlusCircleOutlined
+                            size="large"
+                            style={{ fontSize: "20px" }}
+                            onClick={() =>
+                              setnumberOfChildren((prev) => prev + 1)
+                            }
+                          />{" "}
+                        </span>
+                      </div>
+                    </Form.Item>
+                    <Form.Item
+                      label="Number Of Infants"
+                      name="number_of_infants"
+                      required
+                    >
+                      <div className="number-input">
+                        <span>
+                          {" "}
+                          <MinusCircleOutlined
+                            size="large"
+                            style={{ fontSize: "20px" }}
+                            onClick={() =>
+                              setnumberOfInfants((prev) => {
+                                if (prev === 0) {
+                                  return 0
+                                } else {
+                                  return (prev -= 1)
+                                }
+                              })
+                            }
+                          />{" "}
+                        </span>
+                        <span>{numberOfInfants}</span>
+                        <span>
+                          {" "}
+                          <PlusCircleOutlined
+                            size="large"
+                            style={{ fontSize: "20px" }}
+                            onClick={() =>
+                              setnumberOfInfants((prev) => prev + 1)
                             }
                           />{" "}
                         </span>
