@@ -18,6 +18,16 @@
 body {
   overflow: visible;
 }
+body::-webkit-scrollbar {
+  width: 0.6rem;
+}
+body::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+
+body::-webkit-scrollbar-thumb {
+  background: var(--color-projects);
+}
 
 .number-input {
   margin: auto;
@@ -879,7 +889,8 @@ a {
 } */
 .singletourCard {
   display: flex;
-  align-items: center;
+  align-items: left;
+  flex-direction: column;
 }
 .card_style {
   min-width: 300px;

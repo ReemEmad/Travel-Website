@@ -38,9 +38,10 @@ import { getSingleTour, reserveTour, getPayment } from "../Apis/toursApis"
 import AppFooter from "./AppFooter"
 import { useHistory } from "react-router"
 import { GuestUserContext } from "../Context/GuestUserContext"
+import Item from "antd/lib/list/Item"
 
 export default function Tour(props) {
-  const { isDataFilled, setisDataFilled } = useContext(GuestUserContext)
+  const { setisDataFilled } = useContext(GuestUserContext)
 
   const history = useHistory()
   const [loading, setloading] = useState(false)
@@ -170,9 +171,16 @@ export default function Tour(props) {
       "Thursday",
       "Friday",
       "Saturday",
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
     ]
 
     var arr = []
+    console.log(new Date(shedule).getDay() + " ssss")
     for (let i = 0; i < tourDuration; i++) {
       arr.push(days[new Date(shedule).getDay() + i])
     }
@@ -283,7 +291,7 @@ export default function Tour(props) {
                             Run
                           </p>
                           {arrdays.map((item) => (
-                            <span key={item}>{item}, </span>
+                            <span key={item}>{item} </span>
                           ))}
                         </div>
                       </div>
@@ -313,6 +321,7 @@ export default function Tour(props) {
                               <p>{item}</p>
                             ))}
                           </Card>
+                          <br />
                           <Card
                             title="Excluded"
                             hoverable
@@ -339,7 +348,18 @@ export default function Tour(props) {
                             bordered={false}
                           >
                             <Panel header={item.name} key="1">
-                              <p>{item.description}</p>
+                              <p>
+                                <strong>Description:</strong>
+                                {"   "} {item.description}
+                              </p>
+                              <p>
+                                <strong>Meals:</strong>
+                                {"   "} {item.meals}
+                              </p>
+                              <p>
+                                <strong>Places | {item.places.name}</strong>
+                                {"   "} {item.places.description}
+                              </p>
                             </Panel>
                           </Collapse>
                         ))}
