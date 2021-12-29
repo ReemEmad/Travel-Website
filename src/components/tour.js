@@ -38,9 +38,9 @@ import { getSingleTour, reserveTour, getPayment } from "../Apis/toursApis"
 import AppFooter from "./AppFooter"
 import { useHistory } from "react-router"
 import { GuestUserContext } from "../Context/GuestUserContext"
-import Item from "antd/lib/list/Item"
 
 export default function Tour(props) {
+  const { RangePicker } = DatePicker
   const { setisDataFilled } = useContext(GuestUserContext)
 
   const history = useHistory()
@@ -60,6 +60,8 @@ export default function Tour(props) {
   const [isModalVisible, setIsModalVisible] = useState(false)
   const [invoiceId, setInvoiceId] = useState()
   const [invoiceURL, setInvoiceURL] = useState()
+  const [startDate, setstartDate] = useState()
+  const [endDate, setendDate] = useState()
 
   const [shedule, setshedule] = useState(Date)
   const { Header, Content } = Layout
@@ -68,7 +70,7 @@ export default function Tour(props) {
 
   /* eslint-disable no-template-curly-in-string */
   const validateMessages = {
-    required: "${label} is required!",
+    required: "This field is required!",
     types: {
       email: "${label} is not a valid email!",
       number: "${label} is not a valid number!",
@@ -84,11 +86,12 @@ export default function Tour(props) {
   }
 
   const onFinish = async (values) => {
-    console.log(values)
+    console.log(validateMessages)
     let data = new FormData()
     let { name, age, email, nationality, mobile, note, payment_method_id } =
       values
 
+    console.log("people", numberOfAdults)
     data.append("name", name)
     data.append("age", age)
     data.append("email", email)
@@ -103,6 +106,8 @@ export default function Tour(props) {
     data.append("number_of_single", numberOfSingle)
     data.append("number_of_double", numberOfDouble)
     data.append("number_of_triple", numberOfTriple)
+    data.append("start_data", startDate)
+    data.append("end_data", endDate)
     console.log(data)
     let authToken = localStorage.getItem("token")
       ? localStorage.getItem("token")
@@ -116,7 +121,8 @@ export default function Tour(props) {
       setInvoiceId(result.data.InvoiceId)
       setInvoiceURL(result.data.InvoiceURL)
     } catch (error) {
-      message.error(error.response.data)
+      console.log(error.response)
+      message.error(error.response.data.message)
       if (error.response.status === 401) {
         message.error("please register first")
         setisDataFilled(true)
@@ -129,19 +135,6 @@ export default function Tour(props) {
     setRequiredMarkType(requiredMarkValue)
   }
 
-  // const buttonItemLayout =
-  //   formLayout === "horizontal"
-  //     ? {
-  //         wrapperCol: {
-  //           span: 14,
-  //           offset: 4,
-  //         },
-  //       }
-  //     : null
-  // function callback(key) {
-  //   console.log(key)
-  // }
-
   function callback2(key) {
     console.log(key)
   }
@@ -150,11 +143,11 @@ export default function Tour(props) {
   const getData = useCallback(async () => {
     setloading(true)
     let { data } = await getSingleTour(id)
-    settour(data.tour[0])
-    settourDuration(data.tour[0].duration)
-    setshedule(data.tour[0].schedule)
+    settour(data.tour)
+    settourDuration(data.tour.duration)
+    setshedule(data.tour.schedule)
     setloading(false)
-    // console.log(data.tour[0])
+    console.log(data.tour)
   }, [id])
 
   useEffect(() => {
@@ -318,7 +311,9 @@ export default function Tour(props) {
                             className="card_style"
                           >
                             {tourr?.overview.included.map((item) => (
-                              <p>{item}</p>
+                              <ul key={item.id}>
+                                <li>{item}</li>
+                              </ul>
                             ))}
                           </Card>
                           <br />
@@ -334,7 +329,9 @@ export default function Tour(props) {
                             }
                           >
                             {tourr?.overview.excluded.map((item) => (
-                              <p>{item}</p>
+                              <ul key={item.id}>
+                                <li>{item}</li>
+                              </ul>
                             ))}
                           </Card>
                         </div>
@@ -354,11 +351,20 @@ export default function Tour(props) {
                               </p>
                               <p>
                                 <strong>Meals:</strong>
-                                {"   "} {item.meals}
+                                {item.meals.map((meal) => (
+                                  <ul key={meal.name}>
+                                    <li>{meal.name}</li>
+                                  </ul>
+                                ))}
                               </p>
                               <p>
-                                <strong>Places | {item.places.name}</strong>
-                                {"   "} {item.places.description}
+                                <strong>Places:</strong>
+                                {"   "}{" "}
+                                {item.places.map((place) => (
+                                  <ul key={place.name}>
+                                    <li>{place.name}</li>
+                                  </ul>
+                                ))}
                               </p>
                             </Panel>
                           </Collapse>
@@ -369,21 +375,14 @@ export default function Tour(props) {
                           {tourr?.prices?.map((item) => (
                             <>
                               <div className="price_card">
-                                <h3
+                                {/* <h3
                                   style={{
                                     marginBottom: "45px",
                                   }}
                                 >
                                   {item?.accommodation[0].name}
-                                </h3>
-                                <div
-                                  style={{
-                                    display: "flex",
-                                    justifyContent: "center",
-                                    // alignItems: "center",
-                                    paddingBottom: "20px",
-                                  }}
-                                >
+                                </h3> */}
+                                <div className="accomodation">
                                   <BankOutlined
                                     style={{
                                       fontSize: "30px",
@@ -392,7 +391,12 @@ export default function Tour(props) {
                                     }}
                                   />
 
-                                  <div align="left">
+                                  <div
+                                    align="center"
+                                    style={{
+                                      marginRight: "20px",
+                                    }}
+                                  >
                                     <img src={imgSrc1} alt="" />
                                     <p
                                       style={{
@@ -405,30 +409,33 @@ export default function Tour(props) {
                                     </p>
                                     <Rate value="4" />
                                   </div>
-                                </div>
-                                <div className="">
-                                  <DollarOutlined
-                                    style={{
-                                      fontSize: "30px",
-                                      marginRight: "20px",
-                                    }}
-                                  />
-                                  <div>
-                                    <h3> {item?.hotelPrices.duration} days</h3>
-                                    <span style={{ color: "#FF4A52" }}>
-                                      LE {item?.hotelPrices.triple}{" "}
-                                    </span>
-                                    <span>Per Person in Triple Room</span>
-                                    <br></br>
-                                    <span style={{ color: "#FF4A52" }}>
-                                      LE {item?.hotelPrices.double}{" "}
-                                    </span>
-                                    <span> Per Person in Double Room</span>
-                                    <br></br>
-                                    <span style={{ color: "#FF4A52" }}>
-                                      LE {item?.hotelPrices.single}{" "}
-                                    </span>
-                                    <span>One Person Traveling Alone</span>
+                                  <div align="center">
+                                    <DollarOutlined
+                                      style={{
+                                        fontSize: "30px",
+                                        marginRight: "20px",
+                                      }}
+                                    />
+                                    <div>
+                                      <h3>
+                                        {" "}
+                                        {item?.hotelPrices.duration} days
+                                      </h3>
+                                      <span style={{ color: "#FF4A52" }}>
+                                        LE {item?.hotelPrices.triple}{" "}
+                                      </span>
+                                      <span>Per Person in Triple Room</span>
+                                      <br></br>
+                                      <span style={{ color: "#FF4A52" }}>
+                                        LE {item?.hotelPrices.double}{" "}
+                                      </span>
+                                      <span> Per Person in Double Room</span>
+                                      <br></br>
+                                      <span style={{ color: "#FF4A52" }}>
+                                        LE {item?.hotelPrices.single}{" "}
+                                      </span>
+                                      <span>One Person Traveling Alone</span>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
@@ -490,7 +497,6 @@ export default function Tour(props) {
                     style={{
                       fontStyle: "bold",
                       fontSize: "25px",
-                      // color: "#ff4a52",
                     }}
                   >
                     Enquire Now
@@ -508,21 +514,26 @@ export default function Tour(props) {
                     requiredMark={requiredMark}
                   >
                     <Form.Item
-                      label="Name"
+                      colon
+                      label={<strong>Name</strong>}
                       name="name"
                       // required
-                      rules={[
-                        {
-                          required: true,
-                        },
-                      ]}
+                      required
                     >
                       <Input placeholder="Name" />
                     </Form.Item>
-                    <Form.Item label="E-mail" name="email" required>
+                    <Form.Item
+                      label={<strong>Email</strong>}
+                      name="email"
+                      required
+                    >
                       <Input placeholder="E-mail" />
                     </Form.Item>
-                    <Form.Item label="Nationality" name="nationality" required>
+                    <Form.Item
+                      label={<strong>Nationality</strong>}
+                      name="nationality"
+                      required
+                    >
                       <Select>
                         <Select.Option value="Egyptian">Egyptian</Select.Option>
                         <Select.Option value="English">English</Select.Option>
@@ -530,14 +541,28 @@ export default function Tour(props) {
                         <Select.Option value="Albanian">Albanian</Select.Option>
                       </Select>
                     </Form.Item>
-                    <Form.Item label="Age" name="age" required>
-                      <InputNumber min="16" max="80" />
+                    <Form.Item
+                      label={<strong>Age Group</strong>}
+                      name="age"
+                      required
+                    >
+                      <Select>
+                        <Select.Option value="18-24">18-24</Select.Option>
+                        <Select.Option value="25-34">25-34</Select.Option>
+                        <Select.Option value="35-44">35-44</Select.Option>
+                        <Select.Option value="45-55">35-44</Select.Option>
+                        <Select.Option value=">55">55 and up</Select.Option>
+                      </Select>
                     </Form.Item>
-                    <Form.Item label="Phone" name="mobile" required>
+                    <Form.Item
+                      label={<strong>Phone</strong>}
+                      name="mobile"
+                      required
+                    >
                       <Input minLength="11" />
                     </Form.Item>
                     <Form.Item
-                      label="Number Of Adults"
+                      label={<strong>Number Of Adults (+12 years)</strong>}
                       name="number_of_people"
                       required
                     >
@@ -572,7 +597,9 @@ export default function Tour(props) {
                       </div>
                     </Form.Item>
                     <Form.Item
-                      label="Number Of Children"
+                      label={
+                        <strong>Number Of Children (2 to 11 years)</strong>
+                      }
                       name="number_of_children"
                       required
                     >
@@ -607,7 +634,7 @@ export default function Tour(props) {
                       </div>
                     </Form.Item>
                     <Form.Item
-                      label="Number Of Infants"
+                      label={<strong>Number Of Infants (0 to 2 years)</strong>}
                       name="number_of_infants"
                       required
                     >
@@ -642,7 +669,7 @@ export default function Tour(props) {
                       </div>
                     </Form.Item>
                     <Form.Item
-                      label="Number Of Single"
+                      label={<strong>Number Of Single</strong>}
                       name="number_of_single"
                       required
                     >
@@ -677,7 +704,7 @@ export default function Tour(props) {
                       </div>
                     </Form.Item>
                     <Form.Item
-                      label="Number Of Double"
+                      label={<strong>Number Of Double</strong>}
                       name="number_of_double"
                       required
                     >
@@ -712,7 +739,7 @@ export default function Tour(props) {
                       </div>
                     </Form.Item>
                     <Form.Item
-                      label="Number Of Triple"
+                      label={<strong>Number Of Triple</strong>}
                       name="number_of_triple"
                       required
                     >
@@ -747,21 +774,21 @@ export default function Tour(props) {
                       </div>
                     </Form.Item>
 
-                    {/* <Form.Item
-                  label="Start & End date"
-                  name="start_end_date"
-                  required
-                >
-                  <RangePicker
-                    onChange={(date, dateString) => {
-                      setstartDate(dateString[0])
-                      setendDate(dateString[1])
-                    }}
-                  />
-                </Form.Item> */}
+                    <Form.Item
+                      label={<strong>Start & End date</strong>}
+                      name="start_end_date"
+                      required
+                    >
+                      <RangePicker
+                        onChange={(date, dateString) => {
+                          setstartDate(dateString[0])
+                          setendDate(dateString[1])
+                        }}
+                      />
+                    </Form.Item>
                     <Form.Item
                       name="payment_method_id"
-                      label="Payment Method"
+                      label={<strong>Payment Method</strong>}
                       required
                     >
                       <Radio.Group>
@@ -772,7 +799,7 @@ export default function Tour(props) {
                         ))}
                       </Radio.Group>
                     </Form.Item>
-                    <Form.Item label="Notes" name="text">
+                    <Form.Item label={<strong>Notes</strong>} name="text">
                       <Input.TextArea />
                     </Form.Item>
                     <Form.Item>

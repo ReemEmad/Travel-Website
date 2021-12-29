@@ -184,6 +184,9 @@ Spin {
 }
 
 @media screen and (max-width: 600px) {
+  .ant-col-xs-21 {
+    flex: 0 0 80%;
+  }
   .search {
     display: flex;
     justify-content: space-around;
@@ -543,7 +546,7 @@ Spin {
 }
 
 .ant-tabs-content {
-  width: 45%;
+  width: 80%;
 }
 
 /* .ant-tabs {
@@ -593,6 +596,8 @@ Spin {
 .btn-submit:hover {
   background: #0f6b62;
   border-color: #0f6b62;
+  color: var(--color-txt);
+  cursor: pointer;
 }
 
 .ant-row-middle {
@@ -879,8 +884,11 @@ a {
 }
 
 .pricesSection {
+  margin-top: 20px;
   display: flex;
   align-items: center;
+  flex-direction: column;
+  margin-left: -265px;
 }
 /* Sider {
   display: flex;
@@ -906,9 +914,15 @@ a {
 }
 
 .price_card {
-  margin-right: 50px;
   margin-bottom: 20px;
 }
+
+.accomodation {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 20px;
+}
+
 @media screen and (max-width: 770px) {
   .ant-layout-sider {
     width: 250px !important;
@@ -921,16 +935,11 @@ a {
   }
   .singletourCard {
     flex-direction: column;
+    margin-left: 20px;
   }
-  .pricesSection {
-    flex-direction: column;
-    margin-left: 155px;
-  }
+
   .ant-tabs {
     margin-left: 0;
-  }
-  .singletourCard {
-    margin-left: 120px;
   }
 }
 
@@ -947,10 +956,13 @@ a {
     max-width: 200px !important;
     margin-top: 800px;
   }
-  /* margin-left: -600px; */
 
-  /* position: fixed; */
-  /* top: 50px; */
+  .accomodation {
+    margin-left: 300px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
 
   .tour_single_head > img {
     height: 25vh;
@@ -1049,12 +1061,16 @@ a {
 
 .form_tour {
   margin-top: 35px;
+  border-radius: 15px;
   background: var(--color-sidetour);
+  /* box-shadow: -1px 5px 20px #b4b1b1; */
 }
 
 .sider-tour {
+  width: 400px;
   padding: 25px;
   border-radius: 15px;
+  box-shadow: -2px 2px 14px #b4b1b1, 2px -2px 14px #b4b1b1;
 }
 
 #navbar__item_last {
@@ -1079,6 +1095,12 @@ a {
 }
 
 @media screen and (max-width: 600px) {
+  .sider-tour {
+    width: 330px;
+  }
+  .form_tour {
+    width: 330px;
+  }
   .form_tour {
     margin: 0 25px;
   }
