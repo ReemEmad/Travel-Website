@@ -254,7 +254,7 @@ export default function Tour(props) {
                           color: "#1EC6B6",
                         }}
                       >
-                        From LE{tourr?.price}
+                        From {tourr?.price}LE
                       </h2>
                       <div className="div_style">
                         <div>

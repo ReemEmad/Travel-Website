@@ -17,6 +17,7 @@
 
 body {
   overflow: visible;
+  overflow-x: hidden;
 }
 body::-webkit-scrollbar {
   width: 0.6rem;
@@ -1078,7 +1079,7 @@ a {
 .form_tour {
   margin-top: 35px;
   border-radius: 15px;
-  background: var(--color-sidetour);
+
   /* box-shadow: -1px 5px 20px #b4b1b1; */
 }
 
