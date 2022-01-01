@@ -828,6 +828,14 @@ a {
   width: 300px;
   height: 200px;
 }
+.ant-divider {
+  border-top: 1px solid rgba(0, 0, 0, 0.74);
+}
+
+.ant-divider:last-child {
+  display: none;
+}
+
 @media screen and (max-width: 600px) {
   .filterRes {
     margin-left: 20px;
@@ -890,6 +898,7 @@ a {
   flex-direction: column;
   margin-left: -120px;
 }
+
 /* Sider {
   display: flex;
   justify-content: center;

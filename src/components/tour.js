@@ -12,7 +12,6 @@ import {
   Checkbox,
   Radio,
   Select,
-  InputNumber,
   message,
   DatePicker,
   Modal,
@@ -373,72 +372,76 @@ export default function Tour(props) {
                       <TabPane tab="Prices" key="3">
                         <section className="pricesSection">
                           {tourr?.prices?.map((item) => (
-                            <div className="price_card">
-                              <div align="center">
-                                <DollarOutlined
-                                  style={{
-                                    fontSize: "30px",
-                                    marginRight: "20px",
-                                  }}
-                                />
-                                <div>
-                                  <h3> {item?.hotelPrices.duration} days</h3>
-                                  <span style={{ color: "#FF4A52" }}>
-                                    LE {item?.hotelPrices.triple}{" "}
-                                  </span>
-                                  <span>Per Person in Triple Room</span>
-                                  <br></br>
-                                  <span style={{ color: "#FF4A52" }}>
-                                    LE {item?.hotelPrices.double}{" "}
-                                  </span>
-                                  <span> Per Person in Double Room</span>
-                                  <br></br>
-                                  <span style={{ color: "#FF4A52" }}>
-                                    LE {item?.hotelPrices.single}{" "}
-                                  </span>
-                                  <span>One Person Traveling Alone</span>
+                            <>
+                              <div className="price_card">
+                                <div align="center">
+                                  <DollarOutlined
+                                    style={{
+                                      fontSize: "30px",
+                                      marginRight: "20px",
+                                    }}
+                                  />
+                                  <div>
+                                    <h3> {item?.hotelPrices.duration} days</h3>
+                                    <span style={{ color: "#FF4A52" }}>
+                                      LE {item?.hotelPrices.triple}{" "}
+                                    </span>
+                                    <span>Per Person in Triple Room</span>
+                                    <br></br>
+                                    <span style={{ color: "#FF4A52" }}>
+                                      LE {item?.hotelPrices.double}{" "}
+                                    </span>
+                                    <span> Per Person in Double Room</span>
+                                    <br></br>
+                                    <span style={{ color: "#FF4A52" }}>
+                                      LE {item?.hotelPrices.single}{" "}
+                                    </span>
+                                    <span>One Person Traveling Alone</span>
+                                  </div>
                                 </div>
-                              </div>
-                              {/* <h3
+                                {/* <h3
                                   style={{
                                     marginBottom: "45px",
                                   }}
                                 >
                                   {item?.accommodation[0].name}
                                 </h3> */}
-                              <div className="accomodation">
-                                {item.accommodation.map((item) => (
-                                  <>
-                                    <BankOutlined
-                                      style={{
-                                        fontSize: "30px",
-                                        alignSelf: "center",
-                                        marginRight: "20px",
-                                      }}
-                                    />
 
-                                    <div
-                                      align="center"
-                                      style={{
-                                        marginRight: "20px",
-                                      }}
-                                    >
-                                      <img src={imgSrc1} alt="" />
-                                      <p
+                                <div className="accomodation">
+                                  {item.accommodation.map((item) => (
+                                    <>
+                                      <BankOutlined
                                         style={{
-                                          fontSize: "16px",
-                                          fontWeight: "600",
-                                          marginBottom: "0px",
+                                          fontSize: "30px",
+                                          alignSelf: "center",
+                                          marginRight: "20px",
+                                        }}
+                                      />
+
+                                      <div
+                                        align="center"
+                                        style={{
+                                          marginRight: "20px",
                                         }}
                                       >
-                                        {item?.name}
-                                      </p>
-                                      <Rate value="4" />
-                                    </div>
-                                  </>
-                                ))}
+                                        <img src={imgSrc1} alt="" />
+                                        <p
+                                          style={{
+                                            fontSize: "16px",
+                                            fontWeight: "600",
+                                            marginBottom: "0px",
+                                          }}
+                                        >
+                                          {item?.name}
+                                        </p>
+                                        <Rate value="4" />
+                                      </div>
+                                    </>
+                                  ))}
+                                </div>
                               </div>
-                            </div>
+                              <Divider type="horizontal" />
+                            </>
                           ))}
                         </section>
                       </TabPane>
