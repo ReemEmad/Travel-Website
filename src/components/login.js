@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import { Button, Input, message } from "antd"
 import { UserOutlined } from "@ant-design/icons"
 import { login } from "../Apis/userApis"
+import { Link } from "react-router-dom"
 import { useHistory } from "react-router"
 
 export default function Login() {
@@ -37,28 +38,40 @@ export default function Login() {
   }
 
   return (
-    <div className="login-container">
-      <div className="center-space">
-        <h1>Login</h1>
-        <Input
-          placeholder="Email"
-          prefix={<UserOutlined />}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <br />
-        <br />
+    <section className="container-login">
+      <div className="login-container">
+        <div className="center-space">
+          <h1>Login</h1>
+          <Input
+            placeholder="Email"
+            prefix={<UserOutlined />}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <br />
+          <br />
 
-        <Input.Password
-          placeholder="Password"
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <br />
-        <br />
-        <br />
-        <Button type="primary" onClick={loginFn} loading={loading}>
-          Submit
-        </Button>
+          <Input.Password
+            placeholder="Password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <br />
+          <br />
+          <br />
+          <Button type="primary" onClick={loginFn} loading={loading}>
+            Submit
+          </Button>
+          <br />
+          <br />
+          <p>
+            Don't have an account?{" "}
+            {
+              <Link to="/register">
+                <span className="link-register">Register here</span>
+              </Link>
+            }
+          </p>
+        </div>
       </div>
-    </div>
+    </section>
   )
 }

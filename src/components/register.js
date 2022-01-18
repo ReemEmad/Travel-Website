@@ -50,7 +50,6 @@ export default function Register() {
       }
     } catch (e) {
       setLoading(false)
-      console.log(e.response.data.errors[0])
       message.error(e.response.data.errors[0])
     }
   }

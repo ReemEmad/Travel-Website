@@ -334,7 +334,7 @@ Spin {
 }
 
 .login-container {
-  background: var(--color-projects);
+  background: var(--color-txt);
   width: 300px;
   height: 350px;
   padding: 70px 30px;
@@ -343,8 +343,16 @@ Spin {
   text-align: center;
 }
 
+.container-login {
+  height: 100vh;
+  background: url("banner3.png.webp");
+  background-size: cover;
+  align-items: center;
+  display: flex;
+}
+
 .login-container h1 {
-  color: var(--color-txt);
+  color: var(--color-home);
 }
 
 .register-container h1 {

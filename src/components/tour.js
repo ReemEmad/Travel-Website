@@ -123,9 +123,9 @@ export default function Tour(props) {
       console.log(error.response)
       message.error(error.response.data.message)
       if (error.response.status === 401) {
-        message.error("please register first")
+        message.error("please login first")
         setisDataFilled(true)
-        history.push("/register")
+        history.push("/login")
       }
     }
   }
@@ -266,14 +266,7 @@ export default function Tour(props) {
                           </p>
                           <p>{tourr?.duration} Days</p>
                         </div>
-                        {/* <Divider type="vertical" orientation="right" /> */}
-                        {/* <div>
-                    <FlagOutlined
-                      style={{ fontSize: "30px", paddingBottom: "10px" }}
-                    />
-                    <p style={{ fontSize: "17px", fontWeight: "bold" }}>Type</p>
-                    <p>Private tour</p>
-                  </div> */}
+
                         <Divider type="vertical" orientation="right" />
                         <div>
                           <CalendarOutlined
@@ -305,7 +298,6 @@ export default function Tour(props) {
                               />
                             }
                             title={"Included"}
-                            // title={<CheckCircleOutlined />}
                             hoverable
                             className="card_style"
                           >
@@ -445,6 +437,7 @@ export default function Tour(props) {
                           ))}
                         </section>
                       </TabPane>
+                      {/* reviews */}
                       {/* <TabPane tab="Client Reviews" key="4">
                   <div className="site-card-border-less-wrapper">
                     <Card
