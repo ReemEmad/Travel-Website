@@ -90,13 +90,12 @@ export default function Tour(props) {
     let { name, age, email, nationality, mobile, note, payment_method_id } =
       values
 
-    console.log("people", numberOfAdults)
     data.append("name", name)
     data.append("age", age)
     data.append("email", email)
     data.append("nationality", nationality)
     data.append("mobile", mobile)
-    data.append("number_of_people", numberOfAdults)
+    data.append("number_of_adults", numberOfAdults)
     data.append("number_of_children", numberOfChildren)
     data.append("number_of_infants", numberOfInfants)
     data.append("note", note)
@@ -105,8 +104,8 @@ export default function Tour(props) {
     data.append("number_of_single", numberOfSingle)
     data.append("number_of_double", numberOfDouble)
     data.append("number_of_triple", numberOfTriple)
-    data.append("start_data", startDate)
-    data.append("end_data", endDate)
+    data.append("date_from", startDate)
+    data.append("date_to", endDate)
     console.log(data)
     let authToken = localStorage.getItem("token")
       ? localStorage.getItem("token")
