@@ -642,10 +642,15 @@ main {
   /* display: no; */
 }
 
+.bm-burger-button {
+  position: relative;
+}
+
 @media screen and (max-width: 600px) {
   .bm-burger-button {
     display: flex;
   }
+
   .showInMobile {
     display: block;
   }
@@ -1092,6 +1097,7 @@ a {
 }
 
 .sider-tour {
+  margin-bottom: 25px;
   width: 400px;
   padding: 25px;
   border-radius: 15px;
