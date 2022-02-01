@@ -120,7 +120,7 @@ export default function Tour(props) {
       setInvoiceURL(result.data.InvoiceURL)
     } catch (error) {
       console.log(error.response)
-      message.error(error.response.data.message)
+      message.error(error.response.data)
       if (error.response.status === 401) {
         message.error("please login first")
         setisDataFilled(true)
