@@ -1,15 +1,18 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useContext } from "react"
 import { Button, Input, message } from "antd"
 import { UserOutlined } from "@ant-design/icons"
 import { login } from "../Apis/userApis"
 import { Link } from "react-router-dom"
 import { useHistory } from "react-router"
+import { GuestUserContext } from "../Context/GuestUserContext"
 
 export default function Login() {
   const history = useHistory()
   const [email, setEmail] = useState()
   const [password, setPassword] = useState()
   const [loading, setLoading] = useState(false)
+
+  const { isDataFilled } = useContext(GuestUserContext)
 
   const loginFn = async () => {
     if (email === "" || password === "") {
@@ -28,7 +31,11 @@ export default function Login() {
       localStorage.setItem("name", data.name)
       localStorage.setItem("email", data.email)
       setLoading(false)
-      history.push("/")
+      if (isDataFilled) {
+        history.goBack()
+      } else {
+        history.push("/")
+      }
       message.success("You've logged in successfully")
     } catch (eror) {
       setLoading(false)

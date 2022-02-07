@@ -119,14 +119,19 @@ export default function Tour(props) {
       setInvoiceId(result.data.InvoiceId)
       setInvoiceURL(result.data.InvoiceURL)
     } catch (error) {
-      console.log(error.response.data.errors)
-      error.response.data.errors.forEach((element) => {
-        message.error({ content: element })
-      })
-      if (error.response.status === 401) {
-        message.error("please login first")
-        setisDataFilled(true)
-        history.push("/login")
+      console.log(error.response.data.message)
+      console.log(Array.isArray(error.response.data.message))
+
+      if (Array.isArray(error.response.data.message)) {
+        error.response.data.message.forEach((element) => {
+          message.error({ content: element })
+        })
+      } else {
+        if (error.response.status === 401) {
+          message.error("please login first")
+          setisDataFilled(true)
+          history.push("/login")
+        }
       }
     }
   }
@@ -173,7 +178,6 @@ export default function Tour(props) {
     ]
 
     var arr = []
-    console.log(new Date(shedule).getDay() + " ssss")
     for (let i = 0; i < tourDuration; i++) {
       arr.push(days[new Date(shedule).getDay() + i])
     }
