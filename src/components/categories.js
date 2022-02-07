@@ -82,7 +82,16 @@ export default function Categories() {
             >
               {categories.map((item) => (
                 <>
-                  <Col className="gutter-row" span={6} key={item.id}>
+                  <Col
+                    className="gutter-row"
+                    span={6}
+                    xs={15}
+                    sm={19}
+                    md={18}
+                    lg={18}
+                    xl={8}
+                    key={item.id}
+                  >
                     <Link to={`/category/${item.id}`}>
                       <Card
                         // onClick={() => window.(`/category/${item.id}`)}

@@ -690,13 +690,8 @@ main {
 }
 
 .bm-cross-button {
-  height: 24px;
-  width: 24px;
-  position: fixed;
-  left: 100%;
-  top: 36px;
+  top: 0px !important;
   z-index: 100;
-  color: #040e27 !important;
 }
 .bm-cross {
   background: #5f5f5f;
@@ -1079,6 +1074,7 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
   }
 
   .content_blog img {
@@ -1137,7 +1133,7 @@ a {
   }
 
   .bm-cross-button {
-    left: 110%;
+    left: 115%;
   }
 
   #navbar__item_last {

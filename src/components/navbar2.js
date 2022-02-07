@@ -21,8 +21,6 @@ export default function Navbar({ props }) {
   const [loading, setLoading] = useState(false)
   const [isMenuOpen, setisMenuOpen] = useState(false)
 
-  const { Header, Content, Sider } = Layout
-
   const loginFn = async () => {
     if (email === "" || password === "") {
       message.error({
@@ -52,7 +50,7 @@ export default function Navbar({ props }) {
     } catch (e) {
       setLoading(false)
       message.error({
-        content: e.response.data.message,
+        content: e.response.data.errors,
       })
     }
   }
