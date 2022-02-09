@@ -49,8 +49,9 @@ export default function Navbar({ props }) {
       })
     } catch (e) {
       setLoading(false)
-      message.error({
-        content: e.response.data.errors,
+      console.log(e.response.data.errors)
+      e.response.data.errors.forEach((element) => {
+        message.error({ content: element })
       })
     }
   }

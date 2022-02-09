@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react"
 import { Tabs,Layout,Rate,Button,Row,Col } from "antd"
 import Navbar from "./navbar2"
 import { getReservedTours } from "../Apis/userApis"
-import Item from "antd/lib/list/Item"
+
 import imgSrc1 from "../pexels-alesia-kozik-6016498.jpg"
-import { Link } from "react-router-dom"
+
 import { Modal} from 'antd';
 
 const { TabPane } = Tabs
@@ -31,7 +31,6 @@ function UserProfile() {
   };
 
   const handleGetModalData = (item) => {
-    // console.log(item)
       const found = reserved.find(i=>i.tour.id===item.tour.id)
       setmodalData(found)    
   }
@@ -138,13 +137,13 @@ function UserProfile() {
         <p><strong>Phone Number:</strong> {modalData.mobile}</p>
         <p><strong>Age: </strong>{modalData.age}</p>
         <p><strong>Nationality:</strong> {modalData.nationality}</p>
-        <p><strong>Number of people:</strong> {modalData.number_of_people}</p>
+        <p><strong>Number of people:</strong> {modalData.number_of_adults}</p>
         <p><strong>Number of single rooms:</strong> {modalData.number_of_single}</p>
         <p><strong>Number of single double rooms:</strong> {modalData.number_of_double}</p>
         <p><strong>Number of single triple rooms:</strong> {modalData.number_of_triple}</p>
         <p><strong>Payment method:</strong> {modalData.payment_method}</p>
         <p><strong>Total cost:</strong> {modalData.total}</p>
-        <p><strong>Aditional notes:</strong> {modalData.note}</p>
+        <p><strong>Aditional notes:</strong> {modalData.note==="undefined"? "No notes" : modalData.note}</p>
       </Modal>
     </>
   )
