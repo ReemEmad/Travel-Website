@@ -49,14 +49,14 @@ export default function Navbar({ props }) {
       })
     } catch (e) {
       setLoading(false)
-      console.log(e.response.data.errors)
-      e.response.data.errors.forEach((element) => {
-        message.error({ content: element })
-      })
+      e.response.data.errors
+        ? e.response.data.errors.forEach((element) => {
+            message.error({ content: element })
+          })
+        : message.error(e.response.data.message)
     }
   }
   const handleCancel = (e) => {
-    console.log(e)
     setisModalVisible(false)
   }
 
