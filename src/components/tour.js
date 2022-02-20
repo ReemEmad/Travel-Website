@@ -610,7 +610,7 @@ export default function Tour(props) {
                             size="large"
                             style={{ fontSize: "20px" }}
                             onClick={() =>
-                              setnumberOfInfants((prev) => {
+                              setnumberOfChildren((prev) => {
                                 if (prev === 0) {
                                   return 0
                                 } else {
