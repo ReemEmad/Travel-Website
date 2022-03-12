@@ -37,10 +37,41 @@ import { getSingleTour, reserveTour, getPayment } from "../Apis/toursApis"
 import AppFooter from "./AppFooter"
 import { useHistory } from "react-router"
 import { GuestUserContext } from "../Context/GuestUserContext"
+import { number } from "prop-types"
 
 export default function Tour(props) {
   const { RangePicker } = DatePicker
-  const { setisDataFilled } = useContext(GuestUserContext)
+  const {
+    setisDataFilled,
+    setnumberOfAdultsContext,
+    setnumberOfChildrenContext,
+    setnumberOfInfantsContext,
+    numberOfAdultsContext,
+    numberOfChildrenContext,
+    numberOfInfantsContext,
+    numberOfSingleContext,
+    numberOfDoubleContext,
+    numberOfTripleContext,
+    setnumberOfSingleContext,
+    setnumberOfDoubleContext,
+    setnumberOfTripleContext,
+    nameContext,
+    ageContext,
+    emailContext,
+    mobileContext,
+    nationalityContext,
+    payment_method_idContext,
+    startDateContext,
+    endDateContext,
+    setnameContext,
+    setageContext,
+    setemailContext,
+    setmobileContext,
+    setnationalityContext,
+    setpayment_method_idContext,
+    setstartDateContext,
+    setendDateContext,
+  } = useContext(GuestUserContext)
 
   const history = useHistory()
   const [loading, setloading] = useState(false)
@@ -50,12 +81,14 @@ export default function Tour(props) {
   const [tourr, settour] = useState(undefined)
   const [tourDuration, settourDuration] = useState(0)
   const [arrdays, setarrdays] = useState([])
-  const [numberOfAdults, setnumberOfAdults] = useState(0)
-  const [numberOfChildren, setnumberOfChildren] = useState(0)
-  const [numberOfInfants, setnumberOfInfants] = useState(0)
-  const [numberOfSingle, setnumberOfSingle] = useState(0)
-  const [numberOfDouble, setnumberOfDouble] = useState(0)
-  const [numberOfTriple, setnumberOfTriple] = useState(0)
+  const [numberOfAdults, setnumberOfAdults] = useState(numberOfAdultsContext)
+  const [numberOfChildren, setnumberOfChildren] = useState(
+    numberOfChildrenContext,
+  )
+  const [numberOfInfants, setnumberOfInfants] = useState(numberOfInfantsContext)
+  const [numberOfSingle, setnumberOfSingle] = useState(numberOfSingleContext)
+  const [numberOfDouble, setnumberOfDouble] = useState(numberOfDoubleContext)
+  const [numberOfTriple, setnumberOfTriple] = useState(numberOfTripleContext)
   const [isModalVisible, setIsModalVisible] = useState(false)
   const [invoiceId, setInvoiceId] = useState()
   const [invoiceURL, setInvoiceURL] = useState()
@@ -130,6 +163,13 @@ export default function Tour(props) {
         if (error.response.status === 401) {
           message.error("please login first")
           setisDataFilled(true)
+          setnumberOfAdultsContext(numberOfAdults)
+          setnumberOfChildrenContext(numberOfChildren)
+          setnumberOfInfantsContext(numberOfInfants)
+          setnumberOfSingleContext(numberOfSingle)
+          setnumberOfDoubleContext(numberOfDouble)
+          setnumberOfTripleContext(numberOfTriple)
+
           history.push("/login")
         }
       }
