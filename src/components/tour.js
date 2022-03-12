@@ -169,6 +169,12 @@ export default function Tour(props) {
           setnumberOfSingleContext(numberOfSingle)
           setnumberOfDoubleContext(numberOfDouble)
           setnumberOfTripleContext(numberOfTriple)
+          setnameContext(name)
+          setageContext(age)
+          setmobileContext(mobile)
+          setnationalityContext(nationality)
+          setemailContext(email)
+          setpayment_method_idContext(payment_method_id)
 
           history.push("/login")
         }
@@ -557,7 +563,7 @@ export default function Tour(props) {
                       colon
                       label={<strong>Name</strong>}
                       name="name"
-                      // required
+                      initialValue={nameContext}
                       required
                     >
                       <Input placeholder="Name" />
@@ -565,6 +571,7 @@ export default function Tour(props) {
                     <Form.Item
                       label={<strong>Email</strong>}
                       name="email"
+                      initialValue={emailContext}
                       required
                     >
                       <Input placeholder="E-mail" />
@@ -572,6 +579,7 @@ export default function Tour(props) {
                     <Form.Item
                       label={<strong>Nationality</strong>}
                       name="nationality"
+                      initialValue={nationalityContext}
                       required
                     >
                       <Select>
@@ -584,6 +592,7 @@ export default function Tour(props) {
                     <Form.Item
                       label={<strong>Age Group</strong>}
                       name="age"
+                      initialValue={ageContext}
                       required
                     >
                       <Select>
@@ -597,6 +606,7 @@ export default function Tour(props) {
                     <Form.Item
                       label={<strong>Phone</strong>}
                       name="mobile"
+                      initialValue={mobileContext}
                       required
                     >
                       <Input minLength="11" />
@@ -830,6 +840,7 @@ export default function Tour(props) {
                       name="payment_method_id"
                       label={<strong>Payment Method</strong>}
                       required
+                      initialValue={payment_method_idContext}
                     >
                       <Radio.Group>
                         {paymentMethods.map((method) => (
