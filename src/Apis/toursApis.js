@@ -32,3 +32,13 @@ export let reserveTour = (obj, token) => {
   })
   return result
 }
+
+export let enquireTour = (obj, token) => {
+  let result = axios.post(url + "/enquire", obj, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+      Authorization: `Bearer ${token}`,
+    },
+  })
+  return result
+}

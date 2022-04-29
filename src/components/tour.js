@@ -18,6 +18,7 @@ import {
   Spin,
   Row,
   Col,
+  InputNumber,
 } from "antd"
 import {
   ClockCircleOutlined,
@@ -33,11 +34,15 @@ import {
 
 import imgSrc from "../banner.png.webp"
 import imgSrc1 from "../nile.jpg"
-import { getSingleTour, reserveTour, getPayment } from "../Apis/toursApis"
+import {
+  getSingleTour,
+  reserveTour,
+  getPayment,
+  enquireTour,
+} from "../Apis/toursApis"
 import AppFooter from "./AppFooter"
 import { useHistory } from "react-router"
 import { GuestUserContext } from "../Context/GuestUserContext"
-import { number } from "prop-types"
 
 export default function Tour(props) {
   const { RangePicker } = DatePicker
@@ -90,10 +95,12 @@ export default function Tour(props) {
   const [numberOfDouble, setnumberOfDouble] = useState(numberOfDoubleContext)
   const [numberOfTriple, setnumberOfTriple] = useState(numberOfTripleContext)
   const [isModalVisible, setIsModalVisible] = useState(false)
+  const [isModalEnquireVisible, setIsModalEnquireVisible] = useState(false)
   const [invoiceId, setInvoiceId] = useState()
   const [invoiceURL, setInvoiceURL] = useState()
   const [startDate, setstartDate] = useState()
   const [endDate, setendDate] = useState()
+  const [valPhone, setvalPhone] = useState()
 
   const [shedule, setshedule] = useState(Date)
   const { Header, Content } = Layout
@@ -161,22 +168,25 @@ export default function Tour(props) {
         })
       } else {
         if (error.response.status === 401) {
-          message.error("please login first")
-          setisDataFilled(true)
-          setnumberOfAdultsContext(numberOfAdults)
-          setnumberOfChildrenContext(numberOfChildren)
-          setnumberOfInfantsContext(numberOfInfants)
-          setnumberOfSingleContext(numberOfSingle)
-          setnumberOfDoubleContext(numberOfDouble)
-          setnumberOfTripleContext(numberOfTriple)
-          setnameContext(name)
-          setageContext(age)
-          setmobileContext(mobile)
-          setnationalityContext(nationality)
-          setemailContext(email)
-          setpayment_method_idContext(payment_method_id)
+          message.error(error.response.data)
+          // message.error("please login first")
+          // setisDataFilled(true)
+          // setnumberOfAdultsContext(numberOfAdults)
+          // setnumberOfChildrenContext(numberOfChildren)
+          // setnumberOfInfantsContext(numberOfInfants)
+          // setnumberOfSingleContext(numberOfSingle)
+          // setnumberOfDoubleContext(numberOfDouble)
+          // setnumberOfTripleContext(numberOfTriple)
+          // setnameContext(name)
+          // setageContext(age)
+          // setmobileContext(mobile)
+          // setnationalityContext(nationality)
+          // setemailContext(email)
+          // setpayment_method_idContext(payment_method_id)
 
-          history.push("/login")
+          // history.push("/login")
+        } else {
+          message.error(error.response.data)
         }
       }
     }
@@ -241,6 +251,31 @@ export default function Tour(props) {
   const handleCancel = () => {
     setIsModalVisible(false)
   }
+  const handleOkEnquiry = async () => {
+    let phoneRegex = /^01[0125][0-9]{8}$/
+    if (valPhone.match(phoneRegex)) {
+      let FD = new FormData()
+      FD.append("mobile", valPhone)
+      FD.append("tour_id", props.match.params.id)
+      try {
+        let response = await enquireTour(FD)
+        console.log(
+          "🚀 ~ file: tour.js ~ line 257 ~ handleOkEnquiry ~ response",
+          response,
+        )
+        message.success("Your mobile number was sent successfully")
+        setIsModalEnquireVisible(false)
+      } catch (error) {
+        message.error(error.response.data)
+      }
+    } else {
+      message.error("Please enter a valid number")
+    }
+  }
+
+  const handleCancelEnquiry = () => {
+    setIsModalEnquireVisible(false)
+  }
 
   return (
     <>
@@ -255,6 +290,19 @@ export default function Tour(props) {
         <a target="_blank" href={invoiceURL} rel="noreferrer">
           <Button type="primary">Pay Now</Button>
         </a>
+      </Modal>
+      <Modal
+        title="Enquire about a tour"
+        visible={isModalEnquireVisible}
+        onOk={handleOkEnquiry}
+        onCancel={handleCancelEnquiry}
+      >
+        <Input
+          size="large"
+          style={{ width: 400 }}
+          onChange={(e) => setvalPhone(e.target.value)}
+          placeholder="please enter your phone number"
+        />
       </Modal>
 
       <div style={{ width: "100%" }}>
@@ -378,6 +426,14 @@ export default function Tour(props) {
                           </Card>
                         </div>
                         <br></br>
+                        <Button
+                          type="secondary"
+                          className="enquire_btn_tour"
+                          size="medium"
+                          onClick={() => setIsModalEnquireVisible(true)}
+                        >
+                          Enquire
+                        </Button>
                       </TabPane>
                       <TabPane tab="Itinerary" key="2">
                         {tourr?.itinerary.map((item) => (
