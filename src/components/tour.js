@@ -101,6 +101,7 @@ export default function Tour(props) {
   const [startDate, setstartDate] = useState()
   const [endDate, setendDate] = useState()
   const [valPhone, setvalPhone] = useState()
+  const [valName, setvalName] = useState()
 
   const [shedule, setshedule] = useState(Date)
   const { Header, Content } = Layout
@@ -257,6 +258,7 @@ export default function Tour(props) {
       let FD = new FormData()
       FD.append("mobile", valPhone)
       FD.append("tour_id", props.match.params.id)
+      FD.append("name", valName)
       try {
         let response = await enquireTour(FD)
         console.log(
@@ -299,7 +301,15 @@ export default function Tour(props) {
       >
         <Input
           size="large"
-          style={{ width: 400 }}
+          style={{ width: 330 }}
+          onChange={(e) => setvalName(e.target.value)}
+          placeholder="please enter your name"
+        />
+        <br />
+        <br />
+        <Input
+          size="large"
+          style={{ width: 330 }}
           onChange={(e) => setvalPhone(e.target.value)}
           placeholder="please enter your phone number"
         />
